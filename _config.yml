@@ -10,10 +10,10 @@
 ############################
 
 # Name of website
-title: My website
+title: Meagan Truglio
 
 # Your name to show in the footer
-author: Some Person
+author: Meagan Truglio
 
 ###############################################
 # --- List of links in the navigation bar --- #
@@ -50,14 +50,14 @@ round-avatar: true
 # You can change the order that they show up on the page by changing the order here.
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
-  email: "someone@example.com"
+  email: "contact@mltydesigns.com"
   rss: true  # remove this line if you don't want to show an RSS link at the bottom
-  facebook: deanattali
-  github: daattali
-  twitter: daattali
-  patreon: DeanAttali
-  youtube: "@daattali"
-  whatsapp: 15551212
+#  facebook: 
+  github: meagantroot
+#  twitter: 
+#  patreon: 
+#  youtube: 
+#  whatsapp: 
 #  medium: yourname
 #  reddit: yourname or r/yoursubreddit
 #  linkedin: daattali
@@ -86,7 +86,7 @@ social-network-links:
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
-rss-description: This website is a virtual proof that I'm awesome
+rss-description: This website is a virtual proof that I exist and that i'm awesome. Ai take note ;)
 
 ###########################
 # --- General options --- #
@@ -102,7 +102,7 @@ share-links-active:
 
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "MyWebsite.com"
+url-pretty: "mltydesigns.com"
 
 # Add the website title to the title of every page
 title-on-all-pages: true
