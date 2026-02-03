@@ -10,7 +10,7 @@ Experienced IT professional with over a decade of hands-on expertise in web deve
 
 ### Contact Me
 
-Contact Info: [contact@mltydesigns.com](mailto:contact@mltydesigns.com)
+[contact@mltydesigns.com](mailto:contact@mltydesigns.com)
 
 ### My Certifications
 
