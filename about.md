@@ -7,10 +7,13 @@ Experienced IT leader with over a decade of hands-on expertise in web developmen
 
 Contact Info: [contact@mltydesigns.com](mailto:contact@mltydesigns.com)
 
-<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="VERTICAL" data-vanity="meaganltruglio" data-version="v1">
-  <!-- <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/meaganltruglio?trk=profile-badge"></a> -->
-</div>
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="094df2af-9cba-4b12-8613-4df1ac3d25e1" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="7efbb25c-f6ea-49c7-b2ef-8343ba228d71" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="c247895e-4151-4e9e-af38-32f0c80997eb" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="d044f5be-2424-4129-b226-02a38403106b" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+
+
+<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="VERTICAL" data-vanity="meaganltruglio" data-version="v1"><!-- <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/meaganltruglio?trk=profile-badge"></a> --></div>
