@@ -6,11 +6,11 @@ title: About Me
 Experienced IT professional with over a decade of hands-on expertise in web development, Systems Administration, and digital compliance. I have a proven track record of managing complex, secure hosting environments and leading a small cross-functional team to deliver high-performance, accessible, and compliant web solutions. I'm skilled in Linux server administration, WordPress development, and implementing privacy and accessibility standards such as PCI-DSS, GDPR, CCPA, and ADA/WCAG. Passionate about supporting mission-driven organizations through scalable technology solutions. Im my spare time, I enjoy gardening and shooting billiards.
 
 
-### Contact Me
+## Contact Me
 
 [contact@mltydesigns.com](mailto:contact@mltydesigns.com)
 
-<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="VERTICAL" data-vanity="meaganltruglio" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/meaganltruglio?trk=profile-badge">Connect with me on LinkedIn</a></div>
+<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="VERTICAL" data-vanity="meaganltruglio" data-version="v1"><h3><a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/meaganltruglio?trk=profile-badge">Connect with me on LinkedIn</a></h3></div>
             
 
 ### My Certifications
