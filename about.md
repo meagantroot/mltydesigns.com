@@ -34,91 +34,12 @@ Experienced IT professional with over a decade of hands-on expertise in web deve
 
 .calendar a { display: none !important; }
 
-/* Hides the stats/streak summary at the bottom */
-/* .calendar .contrib-footer, .calendar .contrib-footer .contrib-column {
-    display: none !important;
-} */
-
-
-/* 1. Hide the "Skip to" link and the bottom stats */
-/* .calendar .sr-only, 
-.calendar .contrib-footer {
-    display: none !important;
-} */
-
-/* 2. Center the calendar container */
-/* .calendar {
-    border: none !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    text-align: center;
-} */
-
-/* 3. Ensure the SVG graph itself is centered */
-/* .js-calendar-graph {
-    display: flex;
-    justify-content: center;
-} */
-
-
-/* Color the squares: L1 is lightest, L4 is darkest */
-/* .calendar .ContributionCalendar-day[data-level="0"] { fill: #ebedf0 !important; } /* Empty */
-/*.calendar .ContributionCalendar-day[data-level="1"] { fill: #d1d5ff !important; } 
-.calendar .ContributionCalendar-day[data-level="2"] { fill: #a3a7ff !important; }
-.calendar .ContributionCalendar-day[data-level="3"] { fill: #7579ff !important; }
-.calendar .ContributionCalendar-day[data-level="4"] { fill: #474bff !important; } */
-
-/* Match the text font to your theme */
-/* .calendar {
-    font-family: inherit;
-    border: none !important;
-} */
-
-
-/* Target the rect elements directly inside the calendar */
-/* .calendar rect.ContributionCalendar-day {
-    shape-rendering: crispedges;
-} */
-
-/* Use specific fill overrides with highest priority */
-/* .calendar rect[data-level="0"] { fill: #ebedf0 !important; }
-.calendar rect[data-level="1"] { fill: #d1d5ff !important; } 
-.calendar rect[data-level="2"] { fill: #a3a7ff !important; }
-.calendar rect[data-level="3"] { fill: #7579ff !important; }
-.calendar rect[data-level="4"] { fill: #474bff !important; } */
-
-/* Hide the accessibility skip link and footer */
-/* .sr-only, .contrib-footer {
-    display: none !important;
-} */
-
-/* Center the graph */
-/* .calendar {
-    display: flex;
-    justify-content: center;
-    border: none !important;
-} */
-
-
 </style>
 
 <!-- The container for heatmap -->
 <div class="calendar">
     Loading Meagan's contributions...
 </div>
-
-<style>
-/* Use the internal library classes for maximum specificity */
-.calendar .ContributionCalendar-day[data-level='0'] { fill: #ebedf0 !important; }
-.calendar .ContributionCalendar-day[data-level='1'] { fill: #d1d5ff !important; }
-.calendar .ContributionCalendar-day[data-level='2'] { fill: #a3a7ff !important; }
-.calendar .ContributionCalendar-day[data-level='3'] { fill: #7579ff !important; }
-.calendar .ContributionCalendar-day[data-level='4'] { fill: #474bff !important; }
-</style>
-
 
 <script>
     // Initialize the calendar for your username
