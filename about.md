@@ -75,3 +75,5 @@ Experienced IT professional with over a decade of hands-on expertise in web deve
 </script>
 
 <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+
+<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
