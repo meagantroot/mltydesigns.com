@@ -32,6 +32,8 @@ Experienced IT professional with over a decade of hands-on expertise in web deve
 
 <style>
 
+.calendar a { display: none !important; }
+
 /* Hides the stats/streak summary at the bottom */
 /* .calendar .contrib-footer, .calendar .contrib-footer .contrib-column {
     display: none !important;
@@ -77,28 +79,28 @@ Experienced IT professional with over a decade of hands-on expertise in web deve
 
 
 /* Target the rect elements directly inside the calendar */
-.calendar rect.ContributionCalendar-day {
+/* .calendar rect.ContributionCalendar-day {
     shape-rendering: crispedges;
-}
+} */
 
 /* Use specific fill overrides with highest priority */
-.calendar rect[data-level="0"] { fill: #ebedf0 !important; }
+/* .calendar rect[data-level="0"] { fill: #ebedf0 !important; }
 .calendar rect[data-level="1"] { fill: #d1d5ff !important; } 
 .calendar rect[data-level="2"] { fill: #a3a7ff !important; }
 .calendar rect[data-level="3"] { fill: #7579ff !important; }
-.calendar rect[data-level="4"] { fill: #474bff !important; }
+.calendar rect[data-level="4"] { fill: #474bff !important; } */
 
 /* Hide the accessibility skip link and footer */
-.sr-only, .contrib-footer {
+/* .sr-only, .contrib-footer {
     display: none !important;
-}
+} */
 
 /* Center the graph */
-.calendar {
+/* .calendar {
     display: flex;
     justify-content: center;
     border: none !important;
-}
+} */
 
 
 </style>
