@@ -117,18 +117,6 @@ Experienced IT professional with over a decade of hands-on expertise in web deve
 .calendar .ContributionCalendar-day[data-level='2'] { fill: #a3a7ff !important; }
 .calendar .ContributionCalendar-day[data-level='3'] { fill: #7579ff !important; }
 .calendar .ContributionCalendar-day[data-level='4'] { fill: #474bff !important; }
-
-/* Centers the graph and hides the extras you mentioned */
-.calendar {
-    display: flex;
-    justify-content: center;
-    border: none !important;
-}
-
-.calendar .sr-only, 
-.calendar .contrib-footer {
-    display: none !important;
-}
 </style>
 
 
