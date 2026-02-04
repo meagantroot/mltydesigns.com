@@ -110,6 +110,28 @@ Experienced IT professional with over a decade of hands-on expertise in web deve
     Loading Meagan's contributions...
 </div>
 
+<style>
+/* Use the internal library classes for maximum specificity */
+.calendar .ContributionCalendar-day[data-level='0'] { fill: #ebedf0 !important; }
+.calendar .ContributionCalendar-day[data-level='1'] { fill: #d1d5ff !important; }
+.calendar .ContributionCalendar-day[data-level='2'] { fill: #a3a7ff !important; }
+.calendar .ContributionCalendar-day[data-level='3'] { fill: #7579ff !important; }
+.calendar .ContributionCalendar-day[data-level='4'] { fill: #474bff !important; }
+
+/* Centers the graph and hides the extras you mentioned */
+.calendar {
+    display: flex;
+    justify-content: center;
+    border: none !important;
+}
+
+.calendar .sr-only, 
+.calendar .contrib-footer {
+    display: none !important;
+}
+</style>
+
+
 <script>
     // Initialize the calendar for your username
     GitHubCalendar(".calendar", "meagantroot", { responsive: true });
