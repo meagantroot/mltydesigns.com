@@ -1,13 +1,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  
   {% if page.schema == "person" %}
-    {% include Person_schema.html %}
+    {% include _layouts/Person_schema.html %}
   {% elsif page.schema == "webpage" %}
-    {% include WebPage_schema.html %}
+    {% include _layouts/WebPage_schema.html %}
   {% elsif page.schema == "article" %}
-    {% include Article_schema.html %}
+    {% include _layouts/Article_schema.html %}
   {% endif %}
   
   {% capture pagetitle %}
