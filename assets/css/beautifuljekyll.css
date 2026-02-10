@@ -14,8 +14,8 @@ layout: null
   --navbar-text-col: {{ site.navbar-text-col | default: "#404040" }};
   --navbar-border-col: {{ site.navbar-border-col | default: "#DDDDDD" }};
   --footer-col: {{ site.footer-col | default: "#EAEAEA" }};
-  --footer-text-col: {{ site.footer-text-col | default: "#777777" }};
-  --footer-link-col: {{ site.footer-link-col | default: "#404040" }};
+  --footer-text-col: {{ site.footer-text-col | default: "#000000" }};
+  --footer-link-col: {{ site.footer-link-col | default: "#008AFF" }};
   --footer-hover-col: {{ site.footer-hover-col | default: "#0085A1" }};
 
   /* common CSS variables */
