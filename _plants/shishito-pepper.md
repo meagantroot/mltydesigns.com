@@ -10,10 +10,10 @@ author: Meagan Truglio
 readtime: false
 schema: article
 pepper: true
-scoville: "1000,000 - 350,000" # Use the range from base to peak scoville
+scoville: "100 - 1,000" # Use the range from base to peak scoville
 germination_days: "7-21"
-soil_temp: "80-95°F"
-humidity: "80-100%"
-light: "14-16 hours"
+soil_temp: "70-90°F"
+humidity: "70-90%"
+light: "8-10 hours"
 ---
 
