@@ -287,6 +287,12 @@ defaults:
     values:
       layout: "page"
 
+# Setup Plant Post Type
+collections:
+  plants:  # Replace 'projects' with your desired type name
+    output: true
+
+
 # Exclude these files from production site
 exclude:
   - CHANGELOG.md
