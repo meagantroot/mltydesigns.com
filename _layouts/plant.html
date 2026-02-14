@@ -39,17 +39,18 @@ layout: base
         </div>
       {% endif %}
 
-      {% if page.pepper %}
-        <div class="before-content">
+    
+      <div class="before-content">
           <table>
+            {% if page.pepper %}
             <tr><td>Scoville Range</td><td>{{ page.scoville }}</td></tr>
+            {% endif %}
             <tr><td>Days To Germination</td><td>{{ page.germination_days }}</td></tr>
             <tr><td>Ideal Germination Soil Temp</td><td>{{ page.soil_temp }}</td></tr>
             <tr><td>Ideal Germination Humidity</td><td>{{ page.humidity }}</td></tr>
             <tr><td>Hours Light/Sun Exposure</td><td>{{ page.light }}</td></tr>
           </table>
         </div>
-      {% endif %}
 
       <div class="blog-post">
         {{ content }}
