@@ -292,7 +292,12 @@ collections:
   plants:  # Replace 'projects' with your desired type name
     output: true
     permalink: /plants/:name/
-
+    scope:
+      path: "_plants"  # This is the directory where your plant markdown files will be stored
+      type: "plants"
+    values:
+      layout: "plant"  # This is the layout that will be used for plant pages
+      social-share: false # Don't show social media sharing buttons on plant pages
 
 # Exclude these files from production site
 exclude:
