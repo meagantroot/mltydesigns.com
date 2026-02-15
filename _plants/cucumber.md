@@ -15,4 +15,5 @@ germination_days: "3-10"
 soil_temp: "80-90°F"
 humidity: "80-100%"
 light: "10-12 hours"
+noindex: true
 ---
