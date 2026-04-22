@@ -166,11 +166,13 @@ function updateByPlug() {
 
     resetHighlights();
 
-    data.countries.forEach(name => {
-        const code = countryToCode[name];
-        map.querySelectorAll(`path[id='${code}']`)
-            .forEach(el => el.classList.add('highlight'));
-    });
+data.countries.forEach(name => {
+    const code = countryToCode[name];
+
+    map.querySelectorAll(
+        `path[id='${code}'], path[id='${code.toLowerCase()}'], path[id*='${code}']`
+    ).forEach(el => el.classList.add('highlight'));
+});
 
     renderPlugInfo(data);
     renderSVG(data.svg);
@@ -186,10 +188,11 @@ function updateByCountry() {
 
     resetHighlights();
 
-    const code = countryToCode[country];
-    map.querySelectorAll(`path[id='${code}']`)
-        .forEach(el => el.classList.add('highlight'));
+const code = countryToCode[country];
 
+map.querySelectorAll(
+    `path[id='${code}'], path[id='${code.toLowerCase()}'], path[id*='${code}']`
+).forEach(el => el.classList.add('highlight'));
     const usedPlugs = db.plug_types.filter(p =>
         p.countries.includes(country)
     );
