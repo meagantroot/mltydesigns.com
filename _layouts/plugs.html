@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
 {% include head.html %}
+<style>
+#svg-display {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid red; /* Debug border */
+    background-color: #f0f0f0; /* Debug background */
+}
+
+#svg-display svg {
+    width: 120px;
+    height: 120px;
+    display: block;
+}
+</style>
 <body data-font="Neucha|Cabin+Sketch">
+{% include header.html %}
 
 <div class="container py-4">
 
     <!-- Header -->
     <div class="mb-4">
         <h1 class="h3">
-            Power Plug Explorer
-            <small class="text-muted fs-6">v1.6.2</small>
+            {{ page.title }}
         </h1>
     </div>
 
@@ -27,10 +44,13 @@
     </div>
 
     <!-- Info Panel -->
-    <div class="alert alert-light border-start border-4 border-primary d-flex justify-content-between align-items-center mb-4">
-        <div id="info-text">Select a plug or country to begin.</div>
-        <div id="svg-display"></div>
+<div class="alert alert-light border-start border-4 border-primary d-flex align-items-center gap-3 mb-4">
+    
+    <div id="svg-display" class="flex-shrink-0"></div>
+    <div id="info-text" class="me-3">
+        Select a plug or country to begin.
     </div>
+</div>
 
     <!-- JUMBOTRON-STYLE MAP -->
     <div class="bg-light p-4 p-md-5 rounded-3 shadow-sm mb-4">

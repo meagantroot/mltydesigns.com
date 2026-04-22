@@ -50,11 +50,18 @@ const countryToCode = {
     "Wallis and Futuna": "WF", "Western Sahara": "EH", "Yemen": "YE", "Zambia": "ZM", "Zimbabwe": "ZW", "Côte d'Ivoire": "CI", "Eswatini (Swaziland)": "SZ", "Gaza Strip": "GS"
 };
 
-// --- Utility: Safe element creation ---
+// --- Utility ---
 function el(tag, text = null) {
     const e = document.createElement(tag);
     if (text !== null) e.textContent = text;
     return e;
+}
+
+// --- Normalize country names ---
+function normalizeCountryName(name) {
+    return name
+        .trim()
+        .replace(/\u2019/g, "'"); // fix curly apostrophes
 }
 
 // --- Sanitize SVG ---
@@ -80,10 +87,12 @@ function stripSVG(svgDoc) {
 // --- Init ---
 async function init() {
     try {
-        const res = await fetch('{{ "/assets/plugs.json" | relative_url }}');
+        const res = await fetch('/assets/plugs.json');
         db = await res.json();
 
-        const svgRes = await fetch('{{ "/assets/world.svg" | relative_url }}');
+        console.log("DB loaded:", db);
+
+        const svgRes = await fetch('/assets/world.svg');
         const svgText = await svgRes.text();
 
         const parser = new DOMParser();
@@ -94,6 +103,11 @@ async function init() {
         const svgElement = svgDoc.documentElement;
 
         const container = document.getElementById('map-container');
+        if (!container) {
+            console.error("map-container not found");
+            return;
+        }
+
         container.innerHTML = "";
         container.appendChild(svgElement);
 
@@ -116,10 +130,10 @@ async function init() {
         populateDropdowns();
 
         document.getElementById('plugDropdown')
-            .addEventListener('change', updateByPlug);
+            ?.addEventListener('change', updateByPlug);
 
         document.getElementById('countryDropdown')
-            .addEventListener('change', updateByCountry);
+            ?.addEventListener('change', updateByCountry);
 
     } catch (e) {
         console.error("Initialization failed:", e);
@@ -131,6 +145,25 @@ function populateDropdowns() {
     const plugDrop = document.getElementById('plugDropdown');
     const countryDrop = document.getElementById('countryDropdown');
 
+    if (!plugDrop || !countryDrop) {
+        console.error("Dropdown elements not found");
+        return;
+    }
+
+    // 🔑 Add placeholders FIRST
+    const plugPlaceholder = el('option', '-- please choose one --');
+    plugPlaceholder.value = "";
+    plugPlaceholder.selected = true;
+    plugPlaceholder.disabled = true;
+    plugDrop.appendChild(plugPlaceholder);
+
+    const countryPlaceholder = el('option', '-- please choose one --');
+    countryPlaceholder.value = "";
+    countryPlaceholder.selected = true;
+    countryPlaceholder.disabled = true;
+    countryDrop.appendChild(countryPlaceholder);
+
+    // Populate plugs
     db.plug_types.forEach(p => {
         const option = el('option');
         option.value = p.type;
@@ -138,6 +171,7 @@ function populateDropdowns() {
         plugDrop.appendChild(option);
     });
 
+    // Populate countries
     let countries = [];
     db.plug_types.forEach(p => countries.push(...p.countries));
 
@@ -149,50 +183,82 @@ function populateDropdowns() {
     });
 }
 
-// --- Highlight reset (FIX #1 applied) ---
 function resetHighlights() {
     const map = document.getElementById('map-container');
-    map.querySelectorAll('.country')
-        .forEach(el => el.classList.remove('highlight'));
+    if (!map) return;
+
+    map.querySelectorAll('.country').forEach(el => {
+        el.classList.remove('highlight');
+        el.style.fill = '';
+    });
 }
 
-// --- Update by Plug (FIX #1 applied) ---
+// --- Update by Plug ---
 function updateByPlug() {
     const map = document.getElementById('map-container');
+    if (!map) return;
 
-    const type = document.getElementById('plugDropdown').value;
+    const type = document.getElementById('plugDropdown')?.value;
+    if (!type) return;
     const data = db.plug_types.find(p => p.type === type);
     if (!data) return;
 
     resetHighlights();
 
-data.countries.forEach(name => {
-    const code = countryToCode[name];
+    let missing = [];
 
-    map.querySelectorAll(
-        `path[id='${code}'], path[id='${code.toLowerCase()}'], path[id*='${code}']`
-    ).forEach(el => el.classList.add('highlight'));
-});
+    data.countries.forEach(name => {
+        const normalized = normalizeCountryName(name);
+        const code = countryToCode[normalized];
+
+        if (!code) {
+            missing.push(name);
+            return;
+        }
+
+        map.querySelectorAll(
+            `path[id='${code}'], path[id='${code.toLowerCase()}'], path[id*='${code}']`
+        ).forEach(el => {
+            el.classList.add('highlight');
+            el.style.fill = '#ff6600';
+        });
+    });
+
+    if (missing.length) {
+        console.warn("Missing country codes:", missing);
+    }
 
     renderPlugInfo(data);
     renderSVG(data.svg);
     updateTable(data.countries);
+    document.getElementById('countryDropdown').selectedIndex = 0;
 }
 
-// --- Update by Country (FIX #1 applied) ---
+// --- Update by Country ---
 function updateByCountry() {
     const map = document.getElementById('map-container');
+    if (!map) return;
 
-    const country = document.getElementById('countryDropdown').value;
+    const country = document.getElementById('countryDropdown')?.value;
     if (!country) return;
 
     resetHighlights();
 
-const code = countryToCode[country];
+    const normalized = normalizeCountryName(country);
+    const code = countryToCode[normalized];
 
-map.querySelectorAll(
-    `path[id='${code}'], path[id='${code.toLowerCase()}'], path[id*='${code}']`
-).forEach(el => el.classList.add('highlight'));
+    if (!code) {
+        console.warn("Missing country code for:", country);
+        return;
+    }
+
+    map.querySelectorAll(
+        `path[id='${code}'], path[id='${code.toLowerCase()}'], path[id*='${code}']`
+    ).forEach(el => {
+        el.classList.add('highlight');
+        el.style.fill = '#ff6600';
+    });
+
     const usedPlugs = db.plug_types.filter(p =>
         p.countries.includes(country)
     );
@@ -203,11 +269,16 @@ map.querySelectorAll(
     }
 
     updateTable([country]);
+
+    // ✅ Reset the OTHER dropdown
+    document.getElementById('plugDropdown').selectedIndex = 0;
 }
 
 // --- Render Info ---
 function renderPlugInfo(data) {
     const container = document.getElementById('info-text');
+    if (!container) return;
+
     container.innerHTML = "";
 
     container.append(
@@ -220,6 +291,8 @@ function renderPlugInfo(data) {
 
 function renderCountryInfo(country, plugs) {
     const container = document.getElementById('info-text');
+    if (!container) return;
+
     container.innerHTML = "";
 
     const list = plugs.map(p => `Type ${p.type}`).join(', ');
@@ -233,20 +306,37 @@ function renderCountryInfo(country, plugs) {
 // --- Render SVG ---
 function renderSVG(svgString) {
     const container = document.getElementById('svg-display');
+    if (!container) return;
+
     container.innerHTML = "";
+
+    if (!svgString || typeof svgString !== "string") return;
 
     const clean = sanitizeSVG(svgString);
 
-    const wrapper = document.createElement('div');
-    wrapper.innerHTML = clean;
+    const doc = new DOMParser().parseFromString(clean, "image/svg+xml");
 
-    const svg = wrapper.querySelector('svg');
-    if (svg) container.appendChild(svg);
+    stripSVG(doc);
+
+    const svg = doc.documentElement;
+
+    if (!svg || svg.nodeName !== "svg") return;
+
+    svg.setAttribute("width", "120");
+    svg.setAttribute("height", "120");
+    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+
+    const imported = document.importNode(svg, true);
+    container.appendChild(imported);
+
+    console.log("Updated container:", container.innerHTML);
 }
 
 // --- Table ---
 function updateTable(countries) {
     const tbody = document.getElementById('country-table-body');
+    if (!tbody) return;
+
     tbody.innerHTML = "";
 
     if (!countries || countries.length === 0) {
@@ -275,4 +365,5 @@ function updateTable(countries) {
     });
 }
 
-init();
+// --- Start safely ---
+document.addEventListener('DOMContentLoaded', init);

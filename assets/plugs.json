@@ -1,13 +1,13 @@
 {
   "database_info": {
     "name": "Global Power Plug Standard Database",
-    "version": "1.6.2",
+    "version": "1.6.3",
     "last_updated": "2024-05-22"
   },
   "plug_types": [
     {
       "type": "A",
-      "svg": "<svg viewBox='0 0 50 50'><rect x='17' y='15' width='4' height='15' rx='1' fill='black'/><rect x='29' y='15' width='4' height='15' rx='1' fill='black'/></svg>",
+      "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><rect x='17' y='15' width='4' height='15' rx='1' fill='black'/><rect x='29' y='15' width='4' height='15' rx='1' fill='black'/></svg>",
       "voltage": "100-127V",
       "physical_description": "Two flat, parallel blades.",
       "history": "Patented by Harvey Hubbell in 1904, it was the first design intended to separate appliances from light sockets.",
@@ -15,7 +15,7 @@
     },
     {
       "type": "B",
-      "svg": "<svg viewBox='0 0 50 50'><g transform='rotate(180 25 25)'><rect x='17' y='23' width='4' height='12' rx='1' fill='black'/><rect x='29' y='23' width='4' height='12' rx='1' fill='black'/><circle cx='25' cy='15' r='3.5' fill='black'/></g></svg>",
+      "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><g transform='rotate(180 25 25)'><rect x='17' y='23' width='4' height='12' rx='1' fill='black'/><rect x='29' y='23' width='4' height='12' rx='1' fill='black'/><circle cx='25' cy='15' r='3.5' fill='black'/></g></svg>",
       "voltage": "100-127V",
       "physical_description": "Two flat blades with a round grounding pin.",
       "history": "Developed in the 1920s as grounding became a safety requirement for electrical equipment.",
@@ -23,7 +23,7 @@
     },
     {
       "type": "C",
-      "svg": "<svg viewBox='0 0 50 50'><rect x='15' y='15' width='6' height='6' rx='3' fill='black'/><rect x='29' y='15' width='6' height='6' rx='3' fill='black'/></svg>",
+      "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><rect x='15' y='15' width='6' height='6' rx='3' fill='black'/><rect x='29' y='15' width='6' height='6' rx='3' fill='black'/></svg>",
       "voltage": "220-240V",
       "physical_description": "Two round pins (Europlug).",
       "history": "Standardized as the 'Europlug' (EN 50075) for small appliances across Europe.",
@@ -31,7 +31,7 @@
     },
     {
       "type": "D",
-      "svg": "<svg viewBox='0 0 50 50'><rect x='15' y='24' width='6' height='6' rx='3' fill='black'/><rect x='29' y='24' width='6' height='6' rx='3' fill='black'/><rect x='22' y='12' width='6' height='6' rx='3' fill='black'/></svg>",
+      "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><rect x='15' y='24' width='6' height='6' rx='3' fill='black'/><rect x='29' y='24' width='6' height='6' rx='3' fill='black'/><rect x='22' y='12' width='6' height='6' rx='3' fill='black'/></svg>",
       "voltage": "220-240V",
       "physical_description": "Three large round pins in a triangle.",
       "history": "Originally the British standard (BS 546) before Type G took over in the UK.",
@@ -39,7 +39,7 @@
     },
     {
       "type": "E",
-      "svg": "<svg viewBox='0 0 50 50'><rect x='15' y='24' width='6' height='6' rx='3' fill='black'/><rect x='29' y='24' width='6' height='6' rx='3' fill='black'/><rect x='22' y='12' width='6' height='6' rx='3' fill='none' stroke='black' stroke-width='1'/></svg>",
+      "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><rect x='15' y='24' width='6' height='6' rx='3' fill='black'/><rect x='29' y='24' width='6' height='6' rx='3' fill='black'/><rect x='22' y='12' width='6' height='6' rx='3' fill='none' stroke='black' stroke-width='1'/></svg>",
       "voltage": "220-240V",
       "physical_description": "Two round pins and a hole for grounding.",
       "history": "French standard designed for correct polarity via a socket-mounted pin.",
@@ -47,7 +47,7 @@
     },
     {
       "type": "F",
-      "svg": "<svg viewBox='0 0 50 50'><rect x='15' y='22' width='6' height='6' rx='3' fill='black'/><rect x='29' y='22' width='6' height='6' rx='3' fill='black'/><rect x='22' y='8' width='6' height='2' rx='1' fill='black'/><rect x='22' y='40' width='6' height='2' rx='1' fill='black'/></svg>",
+      "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><rect x='15' y='22' width='6' height='6' rx='3' fill='black'/><rect x='29' y='22' width='6' height='6' rx='3' fill='black'/><rect x='22' y='8' width='6' height='2' rx='1' fill='black'/><rect x='22' y='40' width='6' height='2' rx='1' fill='black'/></svg>",
       "voltage": "220-240V",
       "physical_description": "Two round pins with side grounding clips.",
       "history": "German 'Schuko' standard, developed in 1926.",
@@ -55,7 +55,7 @@
     },
     {
       "type": "G",
-      "svg": "<svg viewBox='0 0 50 50'><rect x='23' y='10' width='4' height='10' rx='1' fill='black'/><rect x='12' y='30' width='10' height='4' rx='1' fill='black'/><rect x='28' y='30' width='10' height='4' rx='1' fill='black'/></svg>",
+      "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><rect x='23' y='10' width='4' height='10' rx='1' fill='black'/><rect x='12' y='30' width='10' height='4' rx='1' fill='black'/><rect x='28' y='30' width='10' height='4' rx='1' fill='black'/></svg>",
       "voltage": "220-240V",
       "physical_description": "Three rectangular blades.",
       "history": "British standard (BS 1363) introduced for post-war ring circuits.",
@@ -63,7 +63,7 @@
     },
     {
       "type": "H",
-      "svg": "<svg viewBox='0 0 50 50'><g transform='rotate(30 15 18)'><rect x='12' y='15' width='6' height='6' rx='3' fill='black'/><rect x='14' y='14' width='2' height='8' fill='black'></rect></g><g transform='rotate(-30 35 18)'><rect x='32' y='15' width='6' height='6' rx='3' fill='black'/><rect x='34' y='14' width='2' height='8' fill='black'></rect></g><g><rect x='22' y='30' width='6' height='6' rx='3' fill='black'/><rect x='24' y='29' width='2' height='8' fill='black'></rect></g></svg>",
+      "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><g transform='rotate(30 15 18)'><rect x='12' y='15' width='6' height='6' rx='3' fill='black'/><rect x='14' y='14' width='2' height='8' fill='black'></rect></g><g transform='rotate(-30 35 18)'><rect x='32' y='15' width='6' height='6' rx='3' fill='black'/><rect x='34' y='14' width='2' height='8' fill='black'></rect></g><g><rect x='22' y='30' width='6' height='6' rx='3' fill='black'/><rect x='24' y='29' width='2' height='8' fill='black'></rect></g></svg>",
       "voltage": "230V",
       "physical_description": "Three round notched pins in Y-shape.",
       "history": "Exclusive to Israel; updated in 1989 to accommodate round pins.",
@@ -71,7 +71,7 @@
     },
     {
       "type": "I",
-      "svg": "<svg viewBox='0 0 50 50'><rect x='13' y='14' width='2' height='10' rx='1' fill='black' transform='rotate(30 14 19)'/><rect x='35' y='14' width='2' height='10' rx='1' fill='black' transform='rotate(-30 36 19)'/><rect x='24' y='30' width='2' height='10' rx='1' fill='black'/></svg>",
+      "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><rect x='13' y='14' width='2' height='10' rx='1' fill='black' transform='rotate(30 14 19)'/><rect x='35' y='14' width='2' height='10' rx='1' fill='black' transform='rotate(-30 36 19)'/><rect x='24' y='30' width='2' height='10' rx='1' fill='black'/></svg>",
       "voltage": "220-240V",
       "physical_description": "Two slanted flat blades and one vertical ground.",
       "history": "Developed in Australia, adopted by China and Argentina.",
@@ -79,7 +79,7 @@
     },
     {
       "type": "J",
-      "svg": "<svg viewBox='0 0 50 50'><rect x='10' y='22' width='6' height='6' rx='3' fill='black'/><rect x='34' y='22' width='6' height='6' rx='3' fill='black'/><rect x='22' y='27' width='6' height='6' rx='3' fill='black'/></svg>",
+      "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><rect x='10' y='22' width='6' height='6' rx='3' fill='black'/><rect x='34' y='22' width='6' height='6' rx='3' fill='black'/><rect x='22' y='27' width='6' height='6' rx='3' fill='black'/></svg>",
       "voltage": "230V",
       "physical_description": "Three round pins in a flat triangle.",
       "history": "Swiss standard designed for high socket density.",
@@ -87,7 +87,7 @@
     },
     {
       "type": "K",
-      "svg": "<svg viewBox='0 0 50 50'><rect x='15' y='18' width='6' height='6' rx='3' fill='black'/><rect x='29' y='18' width='6' height='6' rx='3' fill='black'/><path d='M21 32 h8 v2 a4 4 0 0 1 -8 0 z' fill='black'/></svg>",
+      "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><rect x='15' y='18' width='6' height='6' rx='3' fill='black'/><rect x='29' y='18' width='6' height='6' rx='3' fill='black'/><path d='M21 32 h8 v2 a4 4 0 0 1 -8 0 z' fill='black'/></svg>",
       "voltage": "230V",
       "physical_description": "Two round pins and a U-shaped ground.",
       "history": "Danish 'smiley' standard, uniquely shaped grounding pin.",
@@ -95,7 +95,7 @@
     },
     {
       "type": "L",
-      "svg": "<svg viewBox='0 0 50 50'><rect x='11' y='22' width='6' height='6' rx='3' fill='black'/><rect x='22' y='22' width='6' height='6' rx='3' fill='black'/><rect x='33' y='22' width='6' height='6' rx='3' fill='black'/></svg>",
+      "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><rect x='11' y='22' width='6' height='6' rx='3' fill='black'/><rect x='22' y='22' width='6' height='6' rx='3' fill='black'/><rect x='33' y='22' width='6' height='6' rx='3' fill='black'/></svg>",
       "voltage": "230V",
       "physical_description": "Three round pins in a straight line.",
       "history": "Italian standard; exists in two amperage-specific sizes.",
@@ -103,7 +103,7 @@
     },
     {
       "type": "M",
-      "svg": "<svg viewBox='0 0 50 50'><rect x='11' y='26' width='8' height='8' rx='4' fill='black'/><rect x='31' y='26' width='8' height='8' rx='4' fill='black'/><rect x='21' y='10' width='8' height='8' rx='4' fill='black'/></svg>",
+      "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><rect x='11' y='26' width='8' height='8' rx='4' fill='black'/><rect x='31' y='26' width='8' height='8' rx='4' fill='black'/><rect x='21' y='10' width='8' height='8' rx='4' fill='black'/></svg>",
       "voltage": "220-240V",
       "physical_description": "Three large round pins.",
       "history": "15-amp heavy duty standard used in India and South Africa.",
@@ -111,7 +111,7 @@
     },
     {
       "type": "N",
-      "svg": "<svg viewBox='0 0 50 50'><rect x='12' y='21' width='6' height='6' rx='3' fill='black'/><rect x='32' y='21' width='6' height='6' rx='3' fill='black'/><rect x='22' y='24' width='6' height='6' rx='3' fill='black'/></svg>",
+      "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><rect x='12' y='21' width='6' height='6' rx='3' fill='black'/><rect x='32' y='21' width='6' height='6' rx='3' fill='black'/><rect x='22' y='24' width='6' height='6' rx='3' fill='black'/></svg>",
       "voltage": "127V-230V",
       "physical_description": "Three round pins in a flat triangle.",
       "history": "The IEC international standard adopted by Brazil and South Africa.",
@@ -119,7 +119,7 @@
     },
     {
       "type": "O",
-      "svg": "<svg viewBox='0 0 50 50'><rect x='13' y='15' width='6' height='6' rx='3' fill='black'/><rect x='31' y='15' width='6' height='6' rx='3' fill='black'/><rect x='22' y='30' width='6' height='6' rx='3' fill='black'/></svg>",
+      "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><rect x='13' y='15' width='6' height='6' rx='3' fill='black'/><rect x='31' y='15' width='6' height='6' rx='3' fill='black'/><rect x='22' y='30' width='6' height='6' rx='3' fill='black'/></svg>",
       "voltage": "230V",
       "physical_description": "Three round pins in a sharp triangle.",
       "history": "Introduced in Thailand in 2006 to simplify hybrid systems.",
