@@ -4,7 +4,7 @@ layout: pool
 share-img: assets/img/icon-512.png
 permalink: /pool
 noindex: true
-schema: webpage
+schema: webapp
 ---
 
 <div class="container p-0">
