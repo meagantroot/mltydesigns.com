@@ -80,10 +80,10 @@ function stripSVG(svgDoc) {
 // --- Init ---
 async function init() {
     try {
-        const res = await fetch('{{ "plugs/assets/plugs.json" | relative_url }}');
+        const res = await fetch('{{ "_includes/plugs/assets/includes/plugs.json" | relative_url }}');
         db = await res.json();
 
-        const svgRes = await fetch('{{ "plugs/assets/world.svg" | relative_url }}');
+        const svgRes = await fetch('{{ "_includes/plugs/assets/includes/world.svg" | relative_url }}');
         const svgText = await svgRes.text();
 
         const parser = new DOMParser();
