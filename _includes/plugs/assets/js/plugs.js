@@ -115,7 +115,6 @@ async function init() {
 
         populateDropdowns();
 
-        // Attach events safely
         document.getElementById('plugDropdown')
             .addEventListener('change', updateByPlug);
 
@@ -150,14 +149,17 @@ function populateDropdowns() {
     });
 }
 
-// --- Highlight reset ---
+// --- Highlight reset (FIX #1 applied) ---
 function resetHighlights() {
-    document.querySelectorAll('.country')
+    const map = document.getElementById('map-container');
+    map.querySelectorAll('.country')
         .forEach(el => el.classList.remove('highlight'));
 }
 
-// --- Update by Plug ---
+// --- Update by Plug (FIX #1 applied) ---
 function updateByPlug() {
+    const map = document.getElementById('map-container');
+
     const type = document.getElementById('plugDropdown').value;
     const data = db.plug_types.find(p => p.type === type);
     if (!data) return;
@@ -166,7 +168,7 @@ function updateByPlug() {
 
     data.countries.forEach(name => {
         const code = countryToCode[name];
-        document.querySelectorAll(`path[id='${code}']`)
+        map.querySelectorAll(`path[id='${code}']`)
             .forEach(el => el.classList.add('highlight'));
     });
 
@@ -175,15 +177,17 @@ function updateByPlug() {
     updateTable(data.countries);
 }
 
-// --- Update by Country ---
+// --- Update by Country (FIX #1 applied) ---
 function updateByCountry() {
+    const map = document.getElementById('map-container');
+
     const country = document.getElementById('countryDropdown').value;
     if (!country) return;
 
     resetHighlights();
 
     const code = countryToCode[country];
-    document.querySelectorAll(`path[id='${code}']`)
+    map.querySelectorAll(`path[id='${code}']`)
         .forEach(el => el.classList.add('highlight'));
 
     const usedPlugs = db.plug_types.filter(p =>
@@ -198,7 +202,7 @@ function updateByCountry() {
     updateTable([country]);
 }
 
-// --- Render Info (SAFE) ---
+// --- Render Info ---
 function renderPlugInfo(data) {
     const container = document.getElementById('info-text');
     container.innerHTML = "";
@@ -223,7 +227,7 @@ function renderCountryInfo(country, plugs) {
     );
 }
 
-// --- Render SVG safely ---
+// --- Render SVG ---
 function renderSVG(svgString) {
     const container = document.getElementById('svg-display');
     container.innerHTML = "";
