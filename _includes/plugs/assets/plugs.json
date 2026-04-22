@@ -1,0 +1,129 @@
+{
+  "database_info": {
+    "name": "Global Power Plug Standard Database",
+    "version": "1.6.2",
+    "last_updated": "2024-05-22"
+  },
+  "plug_types": [
+    {
+      "type": "A",
+      "svg": "<svg viewBox='0 0 50 50'><rect x='17' y='15' width='4' height='15' rx='1' fill='black'/><rect x='29' y='15' width='4' height='15' rx='1' fill='black'/></svg>",
+      "voltage": "100-127V",
+      "physical_description": "Two flat, parallel blades.",
+      "history": "Patented by Harvey Hubbell in 1904, it was the first design intended to separate appliances from light sockets.",
+      "countries": ["American Samoa", "Anguilla", "Antigua and Barbuda", "Aruba", "Bahamas", "Bangladesh", "Barbados", "Belize", "Bermuda", "Bolivia", "British Virgin Islands", "Cambodia", "Canada", "Cayman Islands", "China", "Colombia", "Costa Rica", "Cuba", "Dominican Republic", "Ecuador", "El Salvador", "Guam", "Guatemala", "Guyana", "Haiti", "Honduras", "Jamaica", "Japan", "Laos", "Lebanon", "Liberia", "Malaysia", "Maldives", "Mexico", "Micronesia", "Montserrat", "Netherlands Antilles", "Nicaragua", "Niger", "Palau", "Panama", "Peru", "Philippines", "Puerto Rico", "Saint Kitts and Nevis", "Saint Vincent and the Grenadines", "Saudi Arabia", "Taiwan", "Thailand", "Trinidad and Tobago", "United States", "Venezuela", "Vietnam", "United States Virgin Islands", "Yemen"]
+    },
+    {
+      "type": "B",
+      "svg": "<svg viewBox='0 0 50 50'><g transform='rotate(180 25 25)'><rect x='17' y='23' width='4' height='12' rx='1' fill='black'/><rect x='29' y='23' width='4' height='12' rx='1' fill='black'/><circle cx='25' cy='15' r='3.5' fill='black'/></g></svg>",
+      "voltage": "100-127V",
+      "physical_description": "Two flat blades with a round grounding pin.",
+      "history": "Developed in the 1920s as grounding became a safety requirement for electrical equipment.",
+      "countries": ["American Samoa", "Anguilla", "Antigua and Barbuda", "Aruba", "Bahamas", "Barbados", "Belize", "Bermuda", "British Virgin Islands", "Canada", "Cayman Islands", "Colombia", "Costa Rica", "Cuba", "Dominican Republic", "Ecuador", "El Salvador", "Guam", "Guatemala", "Guyana", "Haiti", "Honduras", "Jamaica", "Japan", "Laos", "Lebanon", "Liberia", "Mexico", "Micronesia", "Montserrat", "Netherlands Antilles", "Nicaragua", "Palau", "Panama", "Peru", "Philippines", "Puerto Rico", "Saint Kitts and Nevis", "Taiwan", "Thailand", "Trinidad and Tobago", "Turks and Caicos Islands", "United States", "United States Virgin Islands", "Venezuela", "Vietnam"]
+    },
+    {
+      "type": "C",
+      "svg": "<svg viewBox='0 0 50 50'><rect x='15' y='15' width='6' height='6' rx='3' fill='black'/><rect x='29' y='15' width='6' height='6' rx='3' fill='black'/></svg>",
+      "voltage": "220-240V",
+      "physical_description": "Two round pins (Europlug).",
+      "history": "Standardized as the 'Europlug' (EN 50075) for small appliances across Europe.",
+      "countries": ["Albania", "Algeria", "Angola", "Argentina", "Austria", "Belgium", "Bolivia", "Brazil", "Bulgaria", "Cameroon", "Chad", "Chile", "China", "Congo", "Croatia", "Czech Republic", "Denmark", "Egypt", "Estonia", "Ethiopia", "Finland", "France", "Germany", "Greece", "Hungary", "India", "Indonesia", "Iran", "Iraq", "Israel", "Italy", "Jordan", "Kuwait", "Madagascar", "Mauritius", "Mongolia", "Morocco", "Mozambique", "Netherlands", "Pakistan", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Romania", "Russia", "Rwanda", "Serbia", "South Africa", "South Korea", "Spain", "Suriname", "Sweden", "Switzerland", "Thailand", "Tunisia", "Turkey", "Ukraine", "Uruguay", "Vietnam"]
+    },
+    {
+      "type": "D",
+      "svg": "<svg viewBox='0 0 50 50'><rect x='15' y='24' width='6' height='6' rx='3' fill='black'/><rect x='29' y='24' width='6' height='6' rx='3' fill='black'/><rect x='22' y='12' width='6' height='6' rx='3' fill='black'/></svg>",
+      "voltage": "220-240V",
+      "physical_description": "Three large round pins in a triangle.",
+      "history": "Originally the British standard (BS 546) before Type G took over in the UK.",
+      "countries": ["Afghanistan", "Bangladesh", "Benin", "Bhutan", "Botswana", "Cameroon", "Chad", "Congo", "Dominica", "Eswatini", "Ethiopia", "French Guiana", "Ghana", "Greece", "Guadeloupe", "Guyana", "Hong Kong", "India", "Iraq", "Jordan", "Kenya", "Lebanon", "Lesotho", "Libya", "Macau", "Madagascar", "Maldives", "Martinique", "Monaco", "Myanmar", "Namibia", "Nepal", "Niger", "Nigeria", "Pakistan", "Qatar", "Saint Kitts and Nevis", "Senegal", "Sierra Leone", "South Africa", "Sri Lanka", "Sudan", "Tanzania", "United Arab Emirates", "Vietnam", "Yemen", "Zambia", "Zimbabwe"]
+    },
+    {
+      "type": "E",
+      "svg": "<svg viewBox='0 0 50 50'><rect x='15' y='24' width='6' height='6' rx='3' fill='black'/><rect x='29' y='24' width='6' height='6' rx='3' fill='black'/><rect x='22' y='12' width='6' height='6' rx='3' fill='none' stroke='black' stroke-width='1'/></svg>",
+      "voltage": "220-240V",
+      "physical_description": "Two round pins and a hole for grounding.",
+      "history": "French standard designed for correct polarity via a socket-mounted pin.",
+      "countries": ["Belgium", "Benin", "Burkina Faso", "Burundi", "Cameroon", "Canary Islands", "Central African Republic", "Chad", "Comoros", "Congo", "Côte d'Ivoire", "Czech Republic", "Denmark", "Djibouti", "East Timor (Timor-Leste)", "Equatorial Guinea", "Ethiopia", "Faroe Islands", "France", "French Guiana", "French Polynesia", "Greenland", "Guadeloupe", "Laos", "Liberia", "Madagascar", "Mali", "Martinique", "Monaco", "Mongolia", "Morocco", "Niger", "Poland", "Reunion", "Saint Barthélemy", "Saint Martin", "Saint Vincent and the Grenadines", "Senegal", "Slovakia", "Syria", "Tunisia"]
+    },
+    {
+      "type": "F",
+      "svg": "<svg viewBox='0 0 50 50'><rect x='15' y='22' width='6' height='6' rx='3' fill='black'/><rect x='29' y='22' width='6' height='6' rx='3' fill='black'/><rect x='22' y='8' width='6' height='2' rx='1' fill='black'/><rect x='22' y='40' width='6' height='2' rx='1' fill='black'/></svg>",
+      "voltage": "220-240V",
+      "physical_description": "Two round pins with side grounding clips.",
+      "history": "German 'Schuko' standard, developed in 1926.",
+      "countries": ["Albania", "Algeria", "Andorra", "Armenia", "Aruba", "Austria", "Azerbaijan", "Belarus", "Bhutan", "Bosnia and Herzegovina", "Bulgaria", "Cape Verde", "Chad", "Croatia", "Denmark", "Egypt", "Estonia", "Ethiopia", "Faroe Islands", "Finland", "Georgia", "Germany", "Greece", "Greenland", "Guinea", "Hungary", "Iceland", "Indonesia", "Iran", "Italy", "Jordan", "Kazakhstan", "Kyrgyzstan", "Laos", "Latvia", "Liberia", "Libya", "Lithuania", "Luxembourg", "Macau", "Moldova", "Monaco", "Montenegro", "Mozambique", "Myanmar", "Netherlands", "Netherlands Antilles", "New Caledonia", "North Macedonia", "Norway", "Portugal", "Romania", "Russia", "San Marino", "Serbia", "Slovenia", "South Korea", "Spain", "Suriname", "Sweden", "Tajikistan", "Thailand", "Timor-Leste", "Turkey", "Turkmenistan", "Ukraine", "Uruguay", "Uzbekistan", "Vietnam"]
+    },
+    {
+      "type": "G",
+      "svg": "<svg viewBox='0 0 50 50'><rect x='23' y='10' width='4' height='10' rx='1' fill='black'/><rect x='12' y='30' width='10' height='4' rx='1' fill='black'/><rect x='28' y='30' width='10' height='4' rx='1' fill='black'/></svg>",
+      "voltage": "220-240V",
+      "physical_description": "Three rectangular blades.",
+      "history": "British standard (BS 1363) introduced for post-war ring circuits.",
+      "countries": ["Bahrain", "Bangladesh", "Belize", "Bhutan", "Botswana", "Brunei", "Cambodia", "Cyprus", "Dominica", "Eswatini", "Falkland Islands", "Gambia", "Ghana", "Gibraltar", "Grenada", "Guyana", "Hong Kong", "Iraq", "Ireland", "Isle of Man", "Jordan", "Kenya", "Kuwait", "Lebanon", "Macau", "Malawi", "Malaysia", "Maldives", "Malta", "Mauritius", "Myanmar", "Nigeria", "Oman", "Pakistan", "Qatar", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Saudi Arabia", "Seychelles", "Sierra Leone", "Singapore", "Solomon Islands", "Sri Lanka", "Tanzania", "Uganda", "United Arab Emirates", "United Kingdom", "Vanuatu", "Vietnam", "Yemen", "Zambia", "Zimbabwe"]
+    },
+    {
+      "type": "H",
+      "svg": "<svg viewBox='0 0 50 50'><g transform='rotate(30 15 18)'><rect x='12' y='15' width='6' height='6' rx='3' fill='black'/><rect x='14' y='14' width='2' height='8' fill='black'></rect></g><g transform='rotate(-30 35 18)'><rect x='32' y='15' width='6' height='6' rx='3' fill='black'/><rect x='34' y='14' width='2' height='8' fill='black'></rect></g><g><rect x='22' y='30' width='6' height='6' rx='3' fill='black'/><rect x='24' y='29' width='2' height='8' fill='black'></rect></g></svg>",
+      "voltage": "230V",
+      "physical_description": "Three round notched pins in Y-shape.",
+      "history": "Exclusive to Israel; updated in 1989 to accommodate round pins.",
+      "countries": ["Gaza Strip", "Israel", "Palestine", "West Bank"]
+    },
+    {
+      "type": "I",
+      "svg": "<svg viewBox='0 0 50 50'><rect x='13' y='14' width='2' height='10' rx='1' fill='black' transform='rotate(30 14 19)'/><rect x='35' y='14' width='2' height='10' rx='1' fill='black' transform='rotate(-30 36 19)'/><rect x='24' y='30' width='2' height='10' rx='1' fill='black'/></svg>",
+      "voltage": "220-240V",
+      "physical_description": "Two slanted flat blades and one vertical ground.",
+      "history": "Developed in Australia, adopted by China and Argentina.",
+      "countries": ["American Samoa", "Argentina", "Australia", "China", "Cook Islands", "Fiji", "Kiribati", "Nauru", "New Zealand", "Niue", "Papua New Guinea", "Samoa", "Solomon Islands", "Tajikistan", "Tonga", "Tuvalu", "Uzbekistan", "Vanuatu"]
+    },
+    {
+      "type": "J",
+      "svg": "<svg viewBox='0 0 50 50'><rect x='10' y='22' width='6' height='6' rx='3' fill='black'/><rect x='34' y='22' width='6' height='6' rx='3' fill='black'/><rect x='22' y='27' width='6' height='6' rx='3' fill='black'/></svg>",
+      "voltage": "230V",
+      "physical_description": "Three round pins in a flat triangle.",
+      "history": "Swiss standard designed for high socket density.",
+      "countries": ["Liechtenstein", "Maldives", "Rwanda", "Switzerland"]
+    },
+    {
+      "type": "K",
+      "svg": "<svg viewBox='0 0 50 50'><rect x='15' y='18' width='6' height='6' rx='3' fill='black'/><rect x='29' y='18' width='6' height='6' rx='3' fill='black'/><path d='M21 32 h8 v2 a4 4 0 0 1 -8 0 z' fill='black'/></svg>",
+      "voltage": "230V",
+      "physical_description": "Two round pins and a U-shaped ground.",
+      "history": "Danish 'smiley' standard, uniquely shaped grounding pin.",
+      "countries": ["Bangladesh", "Denmark", "Faroe Islands", "Greenland", "Guinea", "Madagascar", "Maldives", "Saint Vincent and the Grenadines", "Senegal"]
+    },
+    {
+      "type": "L",
+      "svg": "<svg viewBox='0 0 50 50'><rect x='11' y='22' width='6' height='6' rx='3' fill='black'/><rect x='22' y='22' width='6' height='6' rx='3' fill='black'/><rect x='33' y='22' width='6' height='6' rx='3' fill='black'/></svg>",
+      "voltage": "230V",
+      "physical_description": "Three round pins in a straight line.",
+      "history": "Italian standard; exists in two amperage-specific sizes.",
+      "countries": ["Chile", "Cuba", "El Salvador", "Eritrea", "Ethiopia", "Italy", "Libya", "Maldives", "San Marino", "Syria", "Tunisia", "Uruguay", "Vatican City"]
+    },
+    {
+      "type": "M",
+      "svg": "<svg viewBox='0 0 50 50'><rect x='11' y='26' width='8' height='8' rx='4' fill='black'/><rect x='31' y='26' width='8' height='8' rx='4' fill='black'/><rect x='21' y='10' width='8' height='8' rx='4' fill='black'/></svg>",
+      "voltage": "220-240V",
+      "physical_description": "Three large round pins.",
+      "history": "15-amp heavy duty standard used in India and South Africa.",
+      "countries": ["Afghanistan", "Bangladesh", "Bhutan", "Botswana", "Eswatini (Swaziland)", "Hong Kong", "India", "Israel", "Kuwait", "Lesotho", "Macau", "Malaysia", "Mozambique", "Namibia", "Nepal", "Pakistan", "Singapore", "South Africa", "Sri Lanka", "Sudan", "United Arab Emirates"]
+    },
+    {
+      "type": "N",
+      "svg": "<svg viewBox='0 0 50 50'><rect x='12' y='21' width='6' height='6' rx='3' fill='black'/><rect x='32' y='21' width='6' height='6' rx='3' fill='black'/><rect x='22' y='24' width='6' height='6' rx='3' fill='black'/></svg>",
+      "voltage": "127V-230V",
+      "physical_description": "Three round pins in a flat triangle.",
+      "history": "The IEC international standard adopted by Brazil and South Africa.",
+      "countries": ["Brazil", "South Africa"]
+    },
+    {
+      "type": "O",
+      "svg": "<svg viewBox='0 0 50 50'><rect x='13' y='15' width='6' height='6' rx='3' fill='black'/><rect x='31' y='15' width='6' height='6' rx='3' fill='black'/><rect x='22' y='30' width='6' height='6' rx='3' fill='black'/></svg>",
+      "voltage": "230V",
+      "physical_description": "Three round pins in a sharp triangle.",
+      "history": "Introduced in Thailand in 2006 to simplify hybrid systems.",
+      "countries": ["Thailand"]
+    }
+  ]
+}
