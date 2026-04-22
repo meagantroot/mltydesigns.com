@@ -24,3 +24,16 @@
             border: 1px solid #ddd;
             padding: 5px;
         }
+
+        /* The default state of the map */
+.country {
+    fill: #cccccc; /* Light grey */
+    transition: fill 0.3s ease;
+    stroke: #ffffff;
+    stroke-width: 0.5;
+}
+
+/* The state when a country is selected */
+.highlight {
+    fill: #ff9900 !important; /* Bright orange */
+}
