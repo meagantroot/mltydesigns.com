@@ -166,27 +166,37 @@ function updateByPlug() {
 
     data.countries.forEach(name => {
         const code = countryToCode[name];
-        if (code) {
-            document.querySelectorAll(`path[id='${code}'], path[class*='${code}']`).forEach(el => {
-                el.classList.add('highlight');
-            });
-        }
+        document.querySelectorAll(`path[id='${code}']`)
+            .forEach(el => el.classList.add('highlight'));
     });
+
+    renderPlugInfo(data);
+    renderSVG(data.svg);
+    updateTable(data.countries);
 }
 
 // --- Update by Country ---
 function updateByCountry() {
-    const countryName = document.getElementById('countryDropdown').value;
+    const country = document.getElementById('countryDropdown').value;
+    if (!country) return;
+
     resetHighlights();
 
-    const code = countryToCode[countryName];
-    if (code) {
-        document.querySelectorAll(`path[id='${code}'], path[class*='${code}']`).forEach(el => {
-            el.classList.add('highlight');
-        });
-    }
-}
+    const code = countryToCode[country];
+    document.querySelectorAll(`path[id='${code}']`)
+        .forEach(el => el.classList.add('highlight'));
 
+    const usedPlugs = db.plug_types.filter(p =>
+        p.countries.includes(country)
+    );
+
+    if (usedPlugs.length > 0) {
+        renderCountryInfo(country, usedPlugs);
+        renderSVG(usedPlugs[0].svg);
+    }
+
+    updateTable([country]);
+}
 
 // --- Render Info (SAFE) ---
 function renderPlugInfo(data) {
