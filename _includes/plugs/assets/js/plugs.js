@@ -148,7 +148,7 @@ function populateDropdowns() {
         return;
     }
 
-    // 🔑 Add placeholders FIRST
+    // Add placeholders
     const plugPlaceholder = el('option', '-- please choose one --');
     plugPlaceholder.value = "";
     plugPlaceholder.selected = true;
@@ -268,7 +268,7 @@ function updateByCountry() {
 
     updateTable([country]);
 
-    // ✅ Reset the OTHER dropdown
+    // Reset the OTHER dropdown
     document.getElementById('plugDropdown').selectedIndex = 0;
 }
 
