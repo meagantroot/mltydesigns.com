@@ -8,7 +8,7 @@ const countryToCode = {
     "Bahrain": "BH", "Bangladesh": "BD", "Barbados": "BB", "Belarus": "BY", "Belgium": "BE",
     "Belize": "BZ", "Benin": "BJ", "Bermuda": "BM", "Bhutan": "BT", "Bolivia": "BO",
     "Bosnia and Herzegovina": "BA", "Botswana": "BW", "Brazil": "BR", "British Virgin Islands": "VG", "Brunei": "BN",
-    "Bulgaria": "BG", "Burkina Faso": "BF", "Burundi": "BI", "Canary Islands": "IC","Cambodia": "KH", "Cameroon": "CM",
+    "Bulgaria": "BG", "Burkina Faso": "BF", "Burundi": "BI", "Canary Islands": "IC", "Cambodia": "KH", "Cameroon": "CM",
     "Canada": "CA", "Cape Verde": "CV", "Cayman Islands": "KY", "Central African Republic": "CF", "Chad": "TD",
     "Chile": "CL", "China": "CN", "Cook Islands": "CK", "Colombia": "CO", "Comoros": "KM", "Congo": "CG",
     "Costa Rica": "CR", "Croatia": "HR", "Cuba": "CU", "Cyprus": "CY", "Czech Republic": "CZ",
@@ -47,7 +47,7 @@ const countryToCode = {
     "Turkey": "TR", "Turkmenistan": "TM", "Turks and Caicos Islands": "TC", "Tuvalu": "TV", "Uganda": "UG",
     "Ukraine": "UA", "United Arab Emirates": "AE", "United Kingdom": "GB", "United States": "US", "Uruguay": "UY",
     "Uzbekistan": "UZ", "Vatican City": "VA", "Vanuatu": "VU", "Venezuela": "VE", "Vietnam": "VN", "United States Virgin Islands": "VI",
-    "Wallis and Futuna": "WF", "West Bank": "WE", "Western Sahara": "EH", "Yemen": "YE", "Zambia": "ZM", "Zimbabwe": "ZW", "Côte d'Ivoire": "CI", "Eswatini (Swaziland)": "SZ", "Gaza Strip": "GS", "Sint Maarten": "SX", "Saint Barthélemy":"BL"
+    "Wallis and Futuna": "WF", "West Bank": "WE", "Western Sahara": "EH", "Yemen": "YE", "Zambia": "ZM", "Zimbabwe": "ZW", "Côte d'Ivoire": "CI", "Eswatini (Swaziland)": "SZ", "Gaza Strip": "GS", "Saint Martin": "SX", "Saint Barthélemy":"BL"
 };
 
 // --- Utility ---
