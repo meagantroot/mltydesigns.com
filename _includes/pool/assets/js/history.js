@@ -153,11 +153,11 @@ return `
             <div class="col w-100">
                 <table class="table table-sm fixed-table">
                     <tr class="table-primary">
-                        <th class="text-start" style="width: 5%;">pts</th>
+                        <th class="text-start" style="width: 5%;">p</th>
                         <th class="text-start" style="width: 40%;"></th>
                         <th class="text-center" style="width: 5%;">inn</th>
                         <th class="text-end" style="width: 40%;"></th>
-                        <th class="text-center" style="width: 5%;">pts</th>
+                        <th class="text-center" style="width: 5%;">p</th>
                     </tr>
                     ${rows}
                 </table>
