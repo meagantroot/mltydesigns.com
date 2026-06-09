@@ -90,8 +90,6 @@ async function init() {
         const res = await fetch('/assets/plugs.json');
         db = await res.json();
 
-        console.log("DB loaded:", db);
-
         const svgRes = await fetch('/assets/world.svg');
         const svgText = await svgRes.text();
 
@@ -328,8 +326,6 @@ function renderSVG(svgString) {
 
     const imported = document.importNode(svg, true);
     container.appendChild(imported);
-
-    console.log("Updated container:", container.innerHTML);
 }
 
 // --- Table ---
