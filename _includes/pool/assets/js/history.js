@@ -157,7 +157,7 @@ return `
                         <th class="text-start" style="width: 40%;"></th>
                         <th class="text-center" style="width: 5%;">inn</th>
                         <th class="text-end" style="width: 40%;"></th>
-                        <th class="text-end" style="width: 5%;">pts</th>
+                        <th class="text-center" style="width: 5%;">pts</th>
                     </tr>
                     ${rows}
                 </table>
