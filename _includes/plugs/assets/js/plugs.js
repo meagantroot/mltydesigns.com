@@ -8,12 +8,12 @@ const countryToCode = {
     "Bahrain": "BH", "Bangladesh": "BD", "Barbados": "BB", "Belarus": "BY", "Belgium": "BE",
     "Belize": "BZ", "Benin": "BJ", "Bermuda": "BM", "Bhutan": "BT", "Bolivia": "BO",
     "Bosnia and Herzegovina": "BA", "Botswana": "BW", "Brazil": "BR", "British Virgin Islands": "VG", "Brunei": "BN",
-    "Bulgaria": "BG", "Burkina Faso": "BF", "Burundi": "BI", "Cambodia": "KH", "Cameroon": "CM",
+    "Bulgaria": "BG", "Burkina Faso": "BF", "Burundi": "BI", "Canary Islands": "IC","Cambodia": "KH", "Cameroon": "CM",
     "Canada": "CA", "Cape Verde": "CV", "Cayman Islands": "KY", "Central African Republic": "CF", "Chad": "TD",
-    "Chile": "CL", "China": "CN", "Colombia": "CO", "Comoros": "KM", "Congo": "CG",
+    "Chile": "CL", "China": "CN", "Cook Islands": "CK", "Colombia": "CO", "Comoros": "KM", "Congo": "CG",
     "Costa Rica": "CR", "Croatia": "HR", "Cuba": "CU", "Cyprus": "CY", "Czech Republic": "CZ",
-    "Denmark": "DK", "Djibouti": "DJ", "Dominica": "DM", "Dominican Republic": "DO", "Ecuador": "EC",
-    "Egypt": "EG", "El Salvador": "SV", "Equatorial Guinea": "GQ", "Eritrea": "ER", "Estonia": "EE",
+    "Denmark": "DK", "Djibouti": "DJ", "Dominica": "DM", "Dominican Republic": "DO", "East Timor (Timor-Leste)": "TL", "Ecuador": "EC",
+    "Egypt": "EG", "El Salvador": "SV", "Equatorial Guinea": "GQ", "Eritrea": "ER", "Estonia": "EE", "Eswatini": "SZ",
     "Ethiopia": "ET", "Falkland Islands": "FK", "Faroe Islands": "FO", "Fiji": "FJ", "Finland": "FI",
     "France": "FR", "French Guiana": "GF", "French Polynesia": "PF", "Gabon": "GA", "Gambia": "GM",
     "Georgia": "GE", "Germany": "DE", "Ghana": "GH", "Gibraltar": "GI", "Greece": "GR",
@@ -33,7 +33,7 @@ const countryToCode = {
     "Namibia": "NA", "Nauru": "NR", "Nepal": "NP", "Netherlands": "NL", "Netherlands Antilles": "AN", "New Caledonia": "NC",
     "New Zealand": "NZ", "Nicaragua": "NI", "Niger": "NE", "Nigeria": "NG", "Niue": "NU",
     "Norfolk Island": "NF", "Northern Mariana Islands": "MP", "Norway": "NO", "Oman": "OM", "Pakistan": "PK",
-    "Palau": "PW", "Palestinian Territory": "PS", "Panama": "PA", "Papua New Guinea": "PG", "Paraguay": "PY",
+    "Palau": "PW", "Palestine": "PS", "Panama": "PA", "Papua New Guinea": "PG", "Paraguay": "PY",
     "Peru": "PE", "Philippines": "PH", "Pitcairn": "PN", "Poland": "PL", "Portugal": "PT",
     "Puerto Rico": "PR", "Qatar": "QA", "Reunion": "RE", "Romania": "RO", "Russia": "RU",
     "Rwanda": "RW", "Saint Helena": "SH", "Saint Kitts and Nevis": "KN", "Saint Lucia": "LC", "Saint Pierre and Miquelon": "PM",
@@ -46,8 +46,8 @@ const countryToCode = {
     "Togo": "TG", "Tokelau": "TK", "Tonga": "TO", "Trinidad and Tobago": "TT", "Tunisia": "TN",
     "Turkey": "TR", "Turkmenistan": "TM", "Turks and Caicos Islands": "TC", "Tuvalu": "TV", "Uganda": "UG",
     "Ukraine": "UA", "United Arab Emirates": "AE", "United Kingdom": "GB", "United States": "US", "Uruguay": "UY",
-    "Uzbekistan": "UZ", "Vanuatu": "VU", "Venezuela": "VE", "Vietnam": "VN", "United States Virgin Islands": "VI",
-    "Wallis and Futuna": "WF", "Western Sahara": "EH", "Yemen": "YE", "Zambia": "ZM", "Zimbabwe": "ZW", "Côte d'Ivoire": "CI", "Eswatini (Swaziland)": "SZ", "Gaza Strip": "GS"
+    "Uzbekistan": "UZ", "Vatican City": "VA", "Vanuatu": "VU", "Venezuela": "VE", "Vietnam": "VN", "United States Virgin Islands": "VI",
+    "Wallis and Futuna": "WF", "West Bank": "WE", "Western Sahara": "EH", "Yemen": "YE", "Zambia": "ZM", "Zimbabwe": "ZW", "Côte d'Ivoire": "CI", "Eswatini (Swaziland)": "SZ", "Gaza Strip": "GS", "Sint Maarten": "SX", "Saint Barthélemy":"BL"
 };
 
 // --- Utility ---
