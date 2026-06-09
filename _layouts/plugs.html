@@ -8,8 +8,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid red; /* Debug border */
-    background-color: #f0f0f0; /* Debug background */
+    border: 2px solid red;
+    background-color: #f0f0f0;
 }
 
 #svg-display svg {
@@ -44,16 +44,15 @@
     </div>
 
     <!-- Info Panel -->
-<div class="alert alert-light border-start border-4 border-primary d-flex align-items-center gap-3 mb-4">
-    
-    <div id="svg-display" class="flex-shrink-0"></div>
-    <div id="info-text" class="me-3">
-        Select a plug or country to begin.
+    <div class="alert alert-light border-start border-4 border-primary d-flex align-items-center gap-3 mb-4">
+        <div id="svg-display" class="flex-shrink-0"></div>
+        <div id="info-text" class="me-3">
+            Select a plug or country to begin.
+        </div>
     </div>
-</div>
 
     <!-- JUMBOTRON-STYLE MAP -->
-    <div class="bg-light p-4 p-md-5 rounded-3 shadow-sm mb-4">
+    <div class="p-4 p-md-5 rounded-3 shadow-sm mb-4">
         <h5 class="mb-3">World Plug Map</h5>
         <div id="map-container"></div>
     </div>
@@ -62,7 +61,7 @@
     <div>
         <h5>Matching Countries</h5>
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-sm align-middle">
+            <table class="table table-striped table-sm align-middle">
                 <thead class="table-light">
                     <tr>
                         <th>Country</th>
