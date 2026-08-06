@@ -473,19 +473,25 @@ if (pocketed && pocketed.length > 0) {
     // Increment rack-specific shot count
         gameState.rackShotCount + 1;
     
+
+
+    const winner = gameState.players.find(player => player.score >= player.target);
+
+    if (winner) {
+            const offcanvasElement = document.getElementById('winnerOffcanvas');
+            const bsOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(offcanvasElement);
+            document.getElementById('winnerNameDisplay').innerText = "🎉 Winner: " + winner.name;
+            bsOffcanvas.show();
+            launchConfetti();
+            gameState.winner = winner.name;
+            console.log(gameState.winner);
+    }
+
+
     // Save to LocalStorage and update UI
     saveGame(); 
     render();
 
-const winner = gameState.players.find(player => player.score >= player.target);
-
-if (winner) {
-        const offcanvasElement = document.getElementById('winnerOffcanvas');
-        const bsOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(offcanvasElement);
-        document.getElementById('winnerNameDisplay').innerText = "🎉 Winner: " + winner.name;
-        bsOffcanvas.show();
-        launchConfetti();
-}
 
 }
 

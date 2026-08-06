@@ -13,7 +13,7 @@ function archiveMatch() {
         date: new Date().toLocaleDateString(),
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         mode: gameState.mode,
-        winner: "",
+        winner: gameState.winner,
         innings: (gameState.currentInningIndex -1),
         inningdata: gameState.innings,
         racks: (gameState.currentRack - 1),
@@ -35,6 +35,7 @@ function archiveMatch() {
         }))
     });
     localStorage.setItem('pool_match_history', JSON.stringify(history.slice(0, 50)));
+    console.log(gameState.winner);
 }
 
 function quitMatchEarly() {

@@ -57,7 +57,7 @@ if (currentRack != null && currentRack !== lastRack) {
 
     rackRow = `
     <tr class="table-info m-0 p-0">
-        <td colspan="5" class="text-center" style="padding:1px; margin:0; line-height: 1.1em; font-size: 12px;">
+        <td colspan="3" class="text-center" style="padding:1px; margin:0; line-height: 1.1em; font-size: 12px;">
             <strong>Rack ${currentRack}</strong>
         </td>
     </tr>`;
@@ -103,21 +103,19 @@ function getBallSVG(ball) {
 return `
     ${rackRow}
     <tr>
-        <td class="text-start">${p1Data.points}</td>
-<td class="text-start">
-    <div style="display:flex; flex-wrap:wrap; gap:2px; justify-content:flex-start;">
-        ${(p1Data.balls || []).map(num => getBallSVG(num)).join('') || '-'}
-    </div>
-</td>
+        <td class="text-start">
+            <div style="display:flex; flex-wrap:wrap; gap:2px; justify-content:flex-start;">
+                ${(p1Data.balls || []).map(num => getBallSVG(num)).join('') || '-'}
+            </div>
+        </td>
 
         <td class="text-center"><strong>${idx}</strong></td>
 
-<td class="text-end">
-    <div style="display:flex; flex-wrap:wrap; gap:2px; justify-content:flex-end;">
-        ${(p2Data.balls || []).map(num => getBallSVG(num)).join('') || '-'}
-    </div>
-</td>
-        <td class="text-end">${p2Data.points}</td>
+        <td class="text-end">
+            <div style="display:flex; flex-wrap:wrap; gap:2px; justify-content:flex-end;">
+                ${(p2Data.balls || []).map(num => getBallSVG(num)).join('') || '-'}
+            </div>
+        </td>
     </tr>`;
     }).join('') : '';
 
@@ -153,11 +151,9 @@ return `
             <div class="col w-100">
                 <table class="table table-sm fixed-table">
                     <tr class="table-primary">
-                        <th class="text-start" style="width: 5%;">p</th>
                         <th class="text-start" style="width: 40%;"></th>
-                        <th class="text-center" style="width: 5%;">inn</th>
+                        <th class="text-center" style="width: 10%;">inn</th>
                         <th class="text-end" style="width: 40%;"></th>
-                        <th class="text-center" style="width: 5%;">p</th>
                     </tr>
                     ${rows}
                 </table>
@@ -194,8 +190,14 @@ return `
           <p class="text-start m-0">${m.players[0].won ? '<span class="badge bg-success">win</span>' : '<span class="badge bg-danger">loss</span>'}</p>
           <p class="text-start mt-1">
             ${m.players[0].skill != null ? 'SL: '+ m.players[0].skill : ''}<br>
-            Scratch: ${p0scratchRate} | Foul: ${p0foulRate} | Miscue: ${p0miscueRate}<br>
-            Escape: ${p0escapeRate} | Kick: ${p0kickRate} | Safety: ${p0safetyRate}<br>
+            
+            ${p0scratchRate > 0 ? `Scratch: ${p0scratchRate}<br>` : ''}
+            ${p0foulRate > 0 ? `Foul: ${p0foulRate}<br>` : ''}
+            ${p0miscueRate > 0 ? `Miscue: ${p0miscueRate}<br>` : ''}
+            ${p0escapeRate > 0 ? `Escape: ${p0escapeRate}<br>` : ''}
+            ${p0kickRate > 0 ? `Kick: ${p0kickRate}<br>` : ''}
+            ${p0safetyRate > 0 ? `Safety: ${p0safetyRate}<br>` : ''}
+            
             ${m.players[0].breakandrun > 0 ? `Break and Run: ${m.players[0].breakandrun}<br>` : ''}
             ${m.mode === '8-ball' && m.players[0].count8onbreak > 0 ? `8 on the Break: ${m.players[0].count8onbreak}` : ''}
             ${m.mode === '9-ball' && m.players[0].count9onsnap > 0 ? `9 on the Snap: ${m.players[0].count9onsnap}` : ''}
@@ -206,8 +208,14 @@ return `
           <p class="text-end m-0">${m.players[1].won ? '<span class="badge bg-success">win</span>' : '<span class="badge bg-danger">loss</span>'}</p>
           <p class="text-end mt-1">
             ${m.players[1].skill != null ? 'SL: '+ m.players[1].skill : ''}<br>
-            Scratch: ${p1scratchRate} | Foul: ${p1foulRate} | Miscue: ${p1miscueRate}<br>
-            Escape: ${p1escapeRate} | Kick: ${p1kickRate} | Safety: ${p1safetyRate}<br>
+
+            ${p1scratchRate > 0 ? `Scratch: ${p1scratchRate}<br>` : ''}
+            ${p1foulRate > 0 ? `Foul: ${p1foulRate}<br>` : ''}
+            ${p1miscueRate > 0 ? `Miscue: ${p1miscueRate}<br>` : ''}
+            ${p1escapeRate > 0 ? `Escape: ${p1escapeRate}<br>` : ''}
+            ${p1kickRate > 0 ? `Kick: ${p1kickRate}<br>` : ''}
+            ${p1safetyRate > 0 ? `Safety: ${p1safetyRate}<br>` : ''}
+
             ${m.players[1].breakandrun > 0 ? `Break and Run: ${m.players[1].breakandrun}<br>` : ''}
             ${m.mode === '8-ball' && m.players[1].count8onbreak > 0 ? `8 on the Break: ${m.players[1].count8onbreak}` : ''}
             ${m.mode === '9-ball' && m.players[1].count9onsnap > 0 ? `9 on the Snap: ${m.players[1].count9onsnap}` : ''}
