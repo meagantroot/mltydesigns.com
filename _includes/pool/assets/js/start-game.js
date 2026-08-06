@@ -25,14 +25,14 @@ gameState.rackShotCount = 0;
 window.onload = function() { loadGame(); displayHistory(); updateLifetimeStats(); updateStorageMeter(); };
 
 
-// 1. Move helper functions to the top so they are globally available
+// Move helper functions to the top so they are globally available
 const clean = (str) => {
     if (!str) return "";
     const alphaOnly = str.replace(/[^a-z0-9 ]/gi, "");
     return DOMPurify.sanitize(alphaOnly);
 };
 
-// 2. Define your game state variable globally
+// Define game state variable globally
 // let gameState = {};
 
 function setNames() {
@@ -47,11 +47,12 @@ function setNames() {
 }
 
 function startGame() {
-    // 1. Re-grab the Game Mode and Style (These were missing!)
+    // Re-grab the Game Mode and Style (These were missing!)
     const mode = document.querySelector('input[name="gameMode"]:checked').value;
     const isSingleGame = document.getElementById('gameStyleSingle').checked;
+    const isSuddenDeath = document.getElementById('gameStyleSuddenDeath').checked;
 
-    // 2. Grab and clean the names/skills
+    // Grab and clean the names/skills
     const p1NameInput = document.getElementById('p1Name');
     const p2NameInput = document.getElementById('p2Name');
     const p1SkillInput = document.getElementById('p1Skill');
@@ -62,7 +63,7 @@ function startGame() {
     const p1S = parseInt(p1SkillInput.value);
     const p2S = parseInt(p2SkillInput.value);
 
-    // 3. Check the Radio Buttons for the winner
+    // Check the Radio Buttons for the winner
     const p1Starts = document.getElementById('p1Starts').checked;
 
     let player1, player2;
@@ -75,11 +76,9 @@ function startGame() {
     }
 
 
-    // 4. Initialize...
+    // Initialize...
     console.log(`${player1.name} goes first!`);    // Skill 1-3 = 2 timeouts, 4+ = 1 timeout
     const getInitialTimeouts = (skill) => (skill <= 3 ? 2 : 1);
-    
-    // const isSingleGame = document.getElementById('gameStyleSingle').checked;
 
 gameState = {
     mode: mode,
@@ -130,7 +129,7 @@ gameState = {
     ],
     innings: []
 };
-    console.log("Game Starting!", player1.name, "goes first.");
+//    console.log("Game Starting!", player1.name, "goes first.");
     saveGame(); 
     showGameUI();
 }
@@ -168,13 +167,13 @@ function setNames() {
         exit; 
     }
 
-// 1. Update Radio Labels
+    // Update Radio Labels
     const p1RadioLabel = document.getElementById('p1startsLabelText');
     const p2RadioLabel = document.getElementById('p2startsLabelText');
     if (p1RadioLabel) p1RadioLabel.textContent = p1Clean;
     if (p2RadioLabel) p2RadioLabel.textContent = p2Clean;
 
-    // 2. Update Coin Flip UI labels with NULL-SAFETY checks
+    // Update Coin Flip UI labels with NULL-SAFETY checks
     const elName = document.getElementById('coin-p1-name');
     const elLabel1 = document.getElementById('coin-p1-label');
     const elLabel2 = document.getElementById('coin-p2-label');
@@ -185,7 +184,7 @@ function setNames() {
     if (elLabel2) elLabel2.textContent = p2Clean;
     if (elStatus) elStatus.textContent = p1Clean;
 
-    // 3. Set internal player objects
+    // Set internal player objects
     let player1, player2;
     switch (p1Selected) {
         case true:
@@ -198,7 +197,7 @@ function setNames() {
             break;
     }
 
-    // 4. TRIGGER THE OFFCANVAS MANUALLY
+    // TRIGGER THE OFFCANVAS MANUALLY
     // This ensures it only opens if the validation above passed
     const offcanvasElement = document.getElementById('shootsfirst');
     if (offcanvasElement) {

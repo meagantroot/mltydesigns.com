@@ -161,6 +161,7 @@ function getRemainingGroupBalls(player) {
 function handle9Ball(action) {
     const { p, rules, pocketed, madeMoneyBall } = getTurnContext();
     const isSingleGame = document.getElementById('gameStyleSingle').checked;
+    const isSuddenDeath = document.getElementById('gameStyleSuddenDeath').checked;
     
     const currentShot = gameState.rackShotCount || 0;
     const isBreakShot = (currentShot === 0);
@@ -197,6 +198,8 @@ function handle9Ball(action) {
             if (isSingleGame) {
                 respotBall(9);
                 alert("9-ball spotted. Continue Shooting.");
+            } else if (isSuddenDeath) {
+                pts = (calculatePoints(pocketed, rules)) * 2;
             } else {
                 pts = calculatePoints(pocketed, rules);
             }
@@ -206,6 +209,13 @@ function handle9Ball(action) {
             const bsOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(awardCanvasElement);
             bsOffcanvas.show();
             award(0,'9 on the Snap!');
+        } else if (isSuddenDeath) {
+            pts = 20;
+            // alert("💥 Break and Run!");
+            const awardCanvasElement = document.getElementById('awardOffcanvas');
+            const bsOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(awardCanvasElement);
+            bsOffcanvas.show();
+            award(0,'Break and Run!');            
         } else {
             pts = 10; // APA Break & Run
             // alert("💥 Break and Run!");
@@ -226,16 +236,19 @@ function handle9Ball(action) {
         
         if (isSingleGame) {
             pts = p.target; 
+        } else if (isSuddenDeath) {
+            pts = (calculatePoints(pocketed, rules)) * 2;
         } else {
             pts = calculatePoints(pocketed, rules);
         }
-        
         resetRack = true;
     }
     else {
         
         if (isSingleGame) {
             pts = 0; 
+        } else if (isSuddenDeath) {
+            pts = (calculatePoints(pocketed, rules)) * 2;
         } else {
             pts = calculatePoints(pocketed, rules);
         }
