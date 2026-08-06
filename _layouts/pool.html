@@ -36,6 +36,8 @@
           <div class="btn-group w-100" role="group" aria-label="Basic radio toggle button group">
             <input type="radio" class="btn-check" name="gameStyle" id="gameStyleRace" autocomplete="off" checked>
             <label class="btn btn-outline-primary" for="gameStyleRace">Point Race</label>
+            <input type="radio" class="btn-check" name="gameStyle" id="gameStyleSuddenDeath" autocomplete="off">
+            <label class="btn btn-outline-primary" for="gameStyleSuddenDeath">Sudden Death</label>
             <input type="radio" class="btn-check" name="gameStyle" id="gameStyleSingle" autocomplete="off">
             <label class="btn btn-outline-primary" for="gameStyleSingle">Single Rack</label>
           </div>
@@ -414,29 +416,6 @@
   </div>
 </div>
 
-<!-- Manual Selection -->
-
-<div class="offcanvas offcanvas-start" tabindex="-1" id="shootsfirstmanual" aria-labelledby="shootsfirstmanualLabel">
-  <div class="offcanvas-header">
-    <h3 class="offcanvas-title" id="shootsfirstmanualLabel">Who Won the Lag?</h3>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" onclick="setNames()">X</button>
-  </div>
-  <div class="offcanvas-body">
-    <div class="container mb-3">
-      <small class="form-text text-muted">You can also use this to quickly set who breaks first.</small>
-      <div class="btn-group w-100" role="group" aria-label="Basic radio toggle button group">
-        <input type="radio" class="btn-check" name="whoStarts" id="p1Starts" autocomplete="off" checked="">
-        <label class="btn btn-outline-primary w-100 p-3" for="p1Starts"><span id="p1startsLabelText">Player 1</span></label>
-        <input type="radio" class="btn-check" name="whoStarts" id="p2Starts" autocomplete="off">
-        <label class="btn btn-outline-primary w-100 p-3" for="p2Starts"><span id="p2startsLabelText">Player 2</span></label>
-      </div>
-      <div class="container mt-3 p-0">
-        <button class="btn btn-success w-100 mt-2 p-4" onclick="startGame()" data-bs-dismiss="offcanvas">Start Match</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Who shoots first offcanvas -->
 
 <div class="offcanvas offcanvas-start" tabindex="-1" id="shootsfirst" aria-labelledby="shootsfirstLabel">
@@ -446,9 +425,24 @@
   </div>
   <div class="offcanvas-body">
     <h3 class="title">How would you like to decide who breaks first?</h3>
-    <button class="btn btn-dark w-100 p-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#shootsfirstmanual" aria-controls="shootsfirstmanual">Lag</button>
+    <p style="text-align: center;" class="mt-3 mb-3">Mini-Games = More Fun!</p>
     <button class="btn btn-dark w-100 p-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#coinflip" aria-controls="coinflip">Flip a Coin</button>
     <button class="btn btn-dark w-100 p-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#rpsls" aria-controls="rpsls" onclick="rpslsInit()">Rock Paper Scissors Lizard Spock</button>
+  
+    <hr/>
+
+      <div class="container">
+        <p style="text-align: center;" class="mt-3 mb-3">Choose Manually or Set Lag Winner</p>
+        <div class="btn-group w-100" role="group" aria-label="Basic radio toggle button group">
+          <input type="radio" class="btn-check" name="whoStarts" id="p1Starts" autocomplete="off" checked="">
+          <label class="btn btn-outline-primary w-100 p-3" for="p1Starts"><span id="p1startsLabelText">Player 1</span></label>
+          <input type="radio" class="btn-check" name="whoStarts" id="p2Starts" autocomplete="off">
+          <label class="btn btn-outline-primary w-100 p-3" for="p2Starts"><span id="p2startsLabelText">Player 2</span></label>
+        </div>
+        <div class="container mt-3 p-0">
+          <button class="btn btn-success w-100 mt-2 p-4" onclick="startGame()" data-bs-dismiss="offcanvas">Start Match</button>
+        </div>
+      </div>
   </div>
 </div>
 

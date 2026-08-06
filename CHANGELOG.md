@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.3 - 2026-08-05
+- Added: New Sudden Death scoring mode
+- Added: Manually choose who shoots first
+
+## v1.2.1
+
+## v1.2
+
 ## v1.1.14 - 2026-04-01
 - Added: automatic break and run detection logic. [6ab4847] - ([@meagantroot])
 - Removed: break and run button. [6ab4847] - ([@meagantroot])
