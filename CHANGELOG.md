@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.3.1 - 2026-08-05
+- Fixed: Cleaned up match hisory
+- Fixed: Winner name not being stored to match history
+
 ## v1.3 - 2026-08-05
 - Added: New Sudden Death scoring mode
 - Added: Manually choose who shoots first
