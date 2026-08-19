@@ -83,11 +83,20 @@ function validateImportedBackup(backup) {
     }
     if (backup.active !== undefined && backup.active !== null) {
         if (!isPlainObject(backup.active)) throw new Error("Active match must be an object.");
+        // Legacy/idle exports contain only initialized counters and do not
+        // represent a match that can be resumed.
+        if (backup.active.players === undefined) {
+            backup.active = null;
+            return;
+        }
         if (!Array.isArray(backup.active.players) || backup.active.players.length !== 2) {
             throw new Error("Active match must contain exactly two players.");
         }
         validateImportedPlayer(backup.active.players[0], "Active match player 1");
         validateImportedPlayer(backup.active.players[1], "Active match player 2");
+        if (!["8-ball", "9-ball", "10-ball"].includes(backup.active.mode)) {
+            throw new Error("Active match has an unsupported game mode.");
+        }
     }
 }
 
@@ -125,7 +134,11 @@ function clearHistory() {
 
 // Export Data
 function downloadBackup() {
-    const data = { active: gameState, history: JSON.parse(localStorage.getItem('pool_match_history')) };
+    const hasActiveMatch = Array.isArray(gameState?.players) && gameState.players.length === 2;
+    const data = {
+        active: hasActiveMatch ? gameState : null,
+        history: JSON.parse(localStorage.getItem('pool_match_history'))
+    };
     const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
     const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "pool_backup.json"; a.click();
 }
@@ -156,11 +169,15 @@ function importBackup(e) {
             validateImportedBackup(parsed);
             const d = sanitizeImportedValue(parsed);
             
-            if (d.active) localStorage.setItem('pool_score_data', JSON.stringify(d.active));
+            if (d.active) {
+                localStorage.setItem('pool_score_data', JSON.stringify(d.active));
+            } else {
+                localStorage.removeItem('pool_score_data');
+            }
             if (d.history) localStorage.setItem('pool_match_history', JSON.stringify(d.history));
             
             alert("Backup imported successfully!");
-            localStorage.removeItem('pool_score_data'); location.reload();
+            location.reload();
         } catch (err) {
             alert(`Backup import failed: ${err.message}`);
             console.error("Backup Import Error:", err);
