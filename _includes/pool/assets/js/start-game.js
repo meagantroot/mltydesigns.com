@@ -32,6 +32,16 @@ const clean = (str) => {
     return DOMPurify.sanitize(alphaOnly);
 };
 
+// Encode untrusted text before placing it inside an HTML template string.
+// Prefer textContent when building new UI, but this protects the existing
+// innerHTML-based history and statistics renderers.
+const escapeHtml = (value) => String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
 // Define game state variable globally
 // let gameState = {};
 

@@ -34,6 +34,12 @@ const searchTerm = DOMPurify.sanitize(searchTermStrip);
 
 const htmlOutput = filteredHistory.map((m, index) => {
 
+    const player1Name = escapeHtml(m.players[0].name);
+    const player2Name = escapeHtml(m.players[1].name);
+    const matchDate = escapeHtml(m.date);
+    const matchTime = escapeHtml(m.time);
+    const matchId = escapeHtml(m.matchId);
+
     // Check if we even have data
     const hasInnings = m.inningdata && Object.keys(m.inningdata).length > 0;
 
@@ -175,8 +181,8 @@ return `
         ${m.mode === '10-ball' ? `<div class="ball" data-id="10">10</div>` : ''} 
       </div>
       <div class="text-start">
-        <p class="m-0"><strong>${m.players[0].name} vs. ${m.players[1].name}</strong></p>
-        <p class="m-0 text"><small>${m.date} - ${m.time}</small></p>
+        <p class="m-0"><strong>${player1Name} vs. ${player2Name}</strong></p>
+        <p class="m-0 text"><small>${matchDate} - ${matchTime}</small></p>
         ${m.racks ? `<p class="m-0 text-muted"><small>Racks: ${m.racks} - Innings: ${m.innings}</small></p>` : ''}
       </div>
     </button>
@@ -186,7 +192,7 @@ return `
     <div class="accordion-body p-2">
       <div class="d-flex w-100 justify-content-between">
         <div class="col">
-          <p class="text-start m-0"><span class="h4">${m.players[0].name}</span><br><strong>${m.players[0].score}/${m.players[0].target}</strong></p>
+          <p class="text-start m-0"><span class="h4">${player1Name}</span><br><strong>${m.players[0].score}/${m.players[0].target}</strong></p>
           <p class="text-start m-0">${m.players[0].won ? '<span class="badge bg-success">win</span>' : '<span class="badge bg-danger">loss</span>'}</p>
           <p class="text-start mt-1">
             ${m.players[0].skill != null ? 'SL: '+ m.players[0].skill : ''}<br>
@@ -204,7 +210,7 @@ return `
           </p>
         </div>
         <div class="col">
-          <p class="text-end m-0"><span class="h4">${m.players[1].name}</span><br><strong>${m.players[1].score}/${m.players[1].target}</strong></p>
+          <p class="text-end m-0"><span class="h4">${player2Name}</span><br><strong>${m.players[1].score}/${m.players[1].target}</strong></p>
           <p class="text-end m-0">${m.players[1].won ? '<span class="badge bg-success">win</span>' : '<span class="badge bg-danger">loss</span>'}</p>
           <p class="text-end mt-1">
             ${m.players[1].skill != null ? 'SL: '+ m.players[1].skill : ''}<br>
@@ -226,7 +232,7 @@ return `
       ${tableSection}
 
       <div class="text-right m-0 p-0 text-xsmall">
-        ${m.matchId ? `<small>Match id: ${m.matchId}</small>` : ''}
+        ${m.matchId ? `<small>Match id: ${matchId}</small>` : ''}
       </div>
     </div>
   </div>

@@ -1,5 +1,96 @@
 // Storage Meter
 
+const MAX_BACKUP_FILE_SIZE = 2 * 1024 * 1024;
+const MAX_IMPORTED_MATCHES = 50;
+const MAX_IMPORT_DEPTH = 20;
+const MAX_IMPORT_VALUES = 25000;
+const DANGEROUS_OBJECT_KEYS = new Set(["__proto__", "constructor", "prototype"]);
+
+function isPlainObject(value) {
+    if (value === null || typeof value !== "object" || Array.isArray(value)) return false;
+    const prototype = Object.getPrototypeOf(value);
+    return prototype === Object.prototype || prototype === null;
+}
+
+function sanitizeImportedString(value) {
+    // Remove all markup, then decode any entities DOMPurify introduced so the
+    // stored value remains ordinary text rather than HTML-encoded backup data.
+    const sanitized = DOMPurify.sanitize(value, {
+        ALLOWED_TAGS: [],
+        ALLOWED_ATTR: []
+    });
+    const decoder = document.createElement("textarea");
+    decoder.innerHTML = sanitized;
+    return decoder.value;
+}
+
+function sanitizeImportedValue(value, state = { count: 0 }, depth = 0) {
+    state.count++;
+    if (state.count > MAX_IMPORT_VALUES) throw new Error("Backup contains too much data.");
+    if (depth > MAX_IMPORT_DEPTH) throw new Error("Backup is nested too deeply.");
+
+    if (value === null || typeof value === "boolean") return value;
+    if (typeof value === "number") {
+        if (!Number.isFinite(value)) throw new Error("Backup contains an invalid number.");
+        return value;
+    }
+    if (typeof value === "string") {
+        if (value.length > 2000) throw new Error("Backup contains an oversized text value.");
+        return sanitizeImportedString(value);
+    }
+    if (Array.isArray(value)) {
+        return value.map(item => sanitizeImportedValue(item, state, depth + 1));
+    }
+    if (!isPlainObject(value)) throw new Error("Backup contains an unsupported value.");
+
+    const cleanObject = Object.create(null);
+    for (const [key, item] of Object.entries(value)) {
+        if (DANGEROUS_OBJECT_KEYS.has(key)) throw new Error("Backup contains an unsafe property.");
+        cleanObject[key] = sanitizeImportedValue(item, state, depth + 1);
+    }
+    return cleanObject;
+}
+
+function validateImportedPlayer(player, fieldName) {
+    if (!isPlainObject(player)) throw new Error(`${fieldName} must be an object.`);
+    if (typeof player.name !== "string" || !player.name.trim() || player.name.length > 50) {
+        throw new Error(`${fieldName} must have a name between 1 and 50 characters.`);
+    }
+}
+
+function validateImportedMatch(match, index) {
+    if (!isPlainObject(match)) throw new Error(`History item ${index + 1} must be an object.`);
+    if (!Array.isArray(match.players) || match.players.length !== 2) {
+        throw new Error(`History item ${index + 1} must contain exactly two players.`);
+    }
+    validateImportedPlayer(match.players[0], `History item ${index + 1}, player 1`);
+    validateImportedPlayer(match.players[1], `History item ${index + 1}, player 2`);
+    if (!["8-ball", "9-ball", "10-ball"].includes(match.mode)) {
+        throw new Error(`History item ${index + 1} has an unsupported game mode.`);
+    }
+}
+
+function validateImportedBackup(backup) {
+    if (!isPlainObject(backup)) throw new Error("Backup must be a JSON object.");
+    // Older exports use null when there was no saved match history.
+    if (backup.history === null) backup.history = [];
+    if (backup.history !== undefined) {
+        if (!Array.isArray(backup.history)) throw new Error("Backup history must be an array.");
+        if (backup.history.length > MAX_IMPORTED_MATCHES) {
+            throw new Error(`Backup cannot contain more than ${MAX_IMPORTED_MATCHES} matches.`);
+        }
+        backup.history.forEach(validateImportedMatch);
+    }
+    if (backup.active !== undefined && backup.active !== null) {
+        if (!isPlainObject(backup.active)) throw new Error("Active match must be an object.");
+        if (!Array.isArray(backup.active.players) || backup.active.players.length !== 2) {
+            throw new Error("Active match must contain exactly two players.");
+        }
+        validateImportedPlayer(backup.active.players[0], "Active match player 1");
+        validateImportedPlayer(backup.active.players[1], "Active match player 2");
+    }
+}
+
 function updateStorageMeter() {
     // Calculate current localStorage usage (in bytes)
     let used = 0;
@@ -46,16 +137,24 @@ function importBackup(e) {
     if (!file) return;
 
     // Hard block: Check if the file extension is .json
-    if (!file.name.endsWith('.json')) {
+    if (!file.name.toLowerCase().endsWith('.json')) {
         alert("Please select a valid .json file.");
         e.target.value = ''; // Reset the input
+        return;
+    }
+
+    if (file.size > MAX_BACKUP_FILE_SIZE) {
+        alert("Backup files cannot be larger than 2 MB.");
+        e.target.value = '';
         return;
     }
 
     const reader = new FileReader();
     reader.onload = (ev) => {
         try {
-            const d = JSON.parse(ev.target.result);
+            const parsed = JSON.parse(ev.target.result);
+            validateImportedBackup(parsed);
+            const d = sanitizeImportedValue(parsed);
             
             if (d.active) localStorage.setItem('pool_score_data', JSON.stringify(d.active));
             if (d.history) localStorage.setItem('pool_match_history', JSON.stringify(d.history));
@@ -63,11 +162,11 @@ function importBackup(e) {
             alert("Backup imported successfully!");
             localStorage.removeItem('pool_score_data'); location.reload();
         } catch (err) {
-            // Catches errors if the file content isn't valid JSON
-            alert("Error: The file content is not valid JSON.");
-            console.error("JSON Parse Error:", err);
+            alert(`Backup import failed: ${err.message}`);
+            console.error("Backup Import Error:", err);
         }
     };
+    reader.onerror = () => alert("The backup file could not be read.");
     reader.readAsText(file);
 }
 
