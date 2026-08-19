@@ -1,7 +1,7 @@
 // Game History
 
 function displayHistory() {
-    const h = JSON.parse(localStorage.getItem('pool_match_history') || '[]');
+    const h = readStoredArray('pool_match_history', { removeInvalid: true });
     const container = document.getElementById('history-list');
     
     // Get the search term from the input field

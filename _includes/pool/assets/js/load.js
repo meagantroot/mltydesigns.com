@@ -1,15 +1,23 @@
 // Load Game
 
 function loadGame() {
+    const saved = readStoredJson('pool_score_data', null, {
+        removeInvalid: true,
+        onError: () => alert('The saved active match was corrupted and could not be restored. Match history was not affected.')
+    });
+    if (!saved) return;
 
-
-    const saved = localStorage.getItem('pool_score_data');
-    if (saved) {
-        gameState = JSON.parse(saved);
+    try {
+        validateActiveMatch(saved);
+        gameState = saved;
         if (!gameState.table) gameState.table = Array.from({ length: 15 }, (_, i) => ({
             id: i + 1, state: 'active'
         }));
         showGameUI();
+    } catch (error) {
+        console.error('Invalid active match:', error);
+        localStorage.removeItem('pool_score_data');
+        alert('The saved active match was invalid and could not be restored. Match history was not affected.');
     }
 }
 
