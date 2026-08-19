@@ -2,6 +2,37 @@
 
 [![GitHub license](https://img.shields.io/github/license/meagantroot/mltydesigns.com)](https://github.com)
 
+This is the Jekyll source for [mltydesigns.com](https://mltydesigns.com), including the browser-based pool scoring app.
+
+## Local development
+
+Prerequisites:
+
+- Ruby 3.3.0
+- Bundler 2.5.3
+
+Install the locked dependencies:
+
+```bash
+bundle install
+```
+
+Start the local Jekyll server:
+
+```bash
+bundle exec jekyll serve
+```
+
+Open the site at `http://127.0.0.1:4000` or the pool app at `http://127.0.0.1:4000/pool`.
+
+Run a strict local build check:
+
+```bash
+bundle exec jekyll build --strict_front_matter
+```
+
+GitHub Pages remains responsible for publishing the site. The workflow in `.github/workflows/build.yml` performs the equivalent production build with GitHub's read-only metadata token; it verifies pull requests and pushes to `main` but does not deploy separately.
+
 
 ### Hi there! I'm Meagan Truglio,
 

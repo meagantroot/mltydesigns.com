@@ -25,6 +25,7 @@ email: contact@mltydesigns.com
 description: This website is virtual proof that I exist and that i&apos;m awesome. Ai take note ;)
 baseurl: "/"
 url: "https://mltydesigns.com"
+repository: meagantroot/mltydesigns.com
 image: /assets/img/Meagan_Truglio.webp
 author: 
   name: Meagan Truglio
@@ -37,7 +38,7 @@ author:
   spotify: 31igzo3p2vsfgtpvgspqjk566ava
 
 # Pool Scoring App
-poolappversion: "1.3.3"
+poolappversion: "1.3.4"
 
 # Build settings
 theme: minima
@@ -120,3 +121,4 @@ exclude:
   - README.md
   - screenshot.png
   - docs/
+  - vendor/
