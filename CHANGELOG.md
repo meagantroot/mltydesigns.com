@@ -3,10 +3,10 @@
 All notable changes to this project will be documented in this file.
 
 ## v1.3.6 - 2026-08-18
-- Added: Versioned backup schema with compatibility for backups created before v1.3.6.
-- Fixed: Corrupted or incorrectly shaped browser storage now recovers safely instead of breaking the pool app.
-- Security: Added stricter validation for imported game modes, players, scores, innings, balls, and active-match state.
-- Tests: Added automated storage and backup regression tests to the GitHub Actions build.
+- Added: Versioned backup schema with compatibility for backups created before v1.3.6. [70e8f5f] - ([@meagantroot])
+- Fixed: Corrupted or incorrectly shaped browser storage now recovers safely instead of breaking the pool app. [70e8f5f] - ([@meagantroot])
+- Security: Added stricter validation for imported game modes, players, scores, innings, balls, and active-match state. [70e8f5f] - ([@meagantroot])
+- Tests: Added automated storage and backup regression tests to the GitHub Actions build. [70e8f5f] - ([@meagantroot])
 
 ## v1.3.5 - 2026-08-18
 - Fixed: Corrected malformed Liquid branching in the shared page head. [887574b] - ([@meagantroot])
@@ -112,4 +112,5 @@ All notable changes to this project will be documented in this file.
 [faa17e6]: https://github.com/meagantroot/mltydesigns.com/pull/26/commits/faa17e6b65915626c826696183fe7e7f68fbc3fd
 [f06e4a4]: https://github.com/meagantroot/mltydesigns.com/pull/26/commits/f06e4a438e6d72154b2ed5ee256bb4e5dad1941b
 [887574b]: https://github.com/meagantroot/mltydesigns.com/pull/27/commits/887574b9cbd3e7958530f0c65cb1f00e1cbbf17c
+[70e8f5f]: https://github.com/meagantroot/mltydesigns.com/pull/28/commits/70e8f5fb6de9598c7eca6b3532c5b03dc3c83407
 [@meagantroot]: https://github.com/meagantroot
