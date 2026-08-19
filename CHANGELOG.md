@@ -3,12 +3,12 @@
 All notable changes to this project will be documented in this file.
 
 ## v1.3.5 - 2026-08-18
-- Fixed: Corrected malformed Liquid branching in the shared page head.
-- Fixed: Removed duplicate document closing tags from generated pages.
-- Fixed: Corrected the plants table structure and generated plant links.
-- Added: Reusable, accessible blog pagination shared by blog layouts.
-- Accessibility: Restored browser zoom support on mobile devices.
-- Security: Added opener isolation to links that open in a new tab.
+- Fixed: Corrected malformed Liquid branching in the shared page head. [887574b] - ([@meagantroot])
+- Fixed: Removed duplicate document closing tags from generated pages. [887574b] - ([@meagantroot])
+- Fixed: Corrected the plants table structure and generated plant links. [887574b] - ([@meagantroot])
+- Added: Reusable, accessible blog pagination shared by blog layouts. [887574b] - ([@meagantroot])
+- Accessibility: Restored browser zoom support on mobile devices. [887574b] - ([@meagantroot])
+- Security: Added opener isolation to links that open in a new tab. [887574b] - ([@meagantroot])
 
 ## v1.3.4 - 2026-08-18
 - Build: Pinned Ruby 3.3.0 and Bundler 2.5.3 for reproducible local and automated builds. [faa17e6] - ([@meagantroot])
@@ -105,4 +105,5 @@ All notable changes to this project will be documented in this file.
 [3e6e57f]: https://github.com/meagantroot/mltydesigns.com/pull/25/commits/3e6e57fcc0221270be48cdb72af81e231b0e79cd
 [faa17e6]: https://github.com/meagantroot/mltydesigns.com/pull/26/commits/faa17e6b65915626c826696183fe7e7f68fbc3fd
 [f06e4a4]: https://github.com/meagantroot/mltydesigns.com/pull/26/commits/f06e4a438e6d72154b2ed5ee256bb4e5dad1941b
+[887574b]: https://github.com/meagantroot/mltydesigns.com/pull/27/commits/887574b9cbd3e7958530f0c65cb1f00e1cbbf17c
 [@meagantroot]: https://github.com/meagantroot
