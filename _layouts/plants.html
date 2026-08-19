@@ -6,29 +6,24 @@ layout: base
         <thead>
             <tr>
                 <th scope="col">Name</th>
-                <!-- <th scope="col">Family</th>
-                <th scope="col">Genus</th>
-                <th scope="col">Species</th> -->
                 <th scope="col">Heat SHU</th>
                 <th scope="col">Germination</th>
                 <th scope="col">Soil Temp</th>
                 <th scope="col">Humidity</th>
                 <th scope="col">Light</th>
-                <!-- <th scope="col">Tags</th> -->
             </tr>
+        </thead>
+        <tbody>
             {% for plant in site.plants %}
-
-                <td><a href="{{ plant.url }}">{{ plant.title }}</a></td>
-                <!-- <td>{{ plant.family }}</td>
-                <td>{{ plant.genus }}</td>
-                <td>{{ plant.species }}</td> -->
+            <tr>
+                <td><a href="{{ plant.url | relative_url }}">{{ plant.title }}</a></td>
                 <td>{{ plant.scoville }}</td>
                 <td>{{ plant.germination_days }} days</td>
                 <td>{{ plant.soil_temp }}</td>
                 <td>{{ plant.humidity }}</td>
                 <td>{{ plant.light }}</td>
-                <!-- <td>{{ plant.nfc_tags }}</td> -->
             </tr>
             {% endfor %}
-        </thead>
+        </tbody>
     </table>
+
