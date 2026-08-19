@@ -45,6 +45,7 @@ const searchTerm = DOMPurify.sanitize(searchTermStrip);
         .filter(([name]) => name.toLowerCase().includes(searchTerm))
         .sort(([nameA], [nameB]) => nameA.localeCompare(nameB)) 
         .map(([name, s], index) => {
+            const safeName = escapeHtml(name);
             const winRate = ((s.wins / s.games || 0) * 100).toFixed(1);
             const avgScratches = (s.scratches / s.games|| 0).toFixed(1);
             const avgMiscues = (s.miscues / s.games || 0).toFixed(1);
@@ -62,7 +63,7 @@ const searchTerm = DOMPurify.sanitize(searchTermStrip);
                       data-bs-target="#player-collapse-${index}" 
                       aria-expanded="false" 
                       aria-controls="player-collapse-${index}">
-                ${name}
+                ${safeName}
               </button>
             </h2>
             <div id="player-collapse-${index}" class="accordion-collapse collapse" data-bs-parent="#lifetime-stats-content">
