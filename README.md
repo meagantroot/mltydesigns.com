@@ -48,6 +48,6 @@ A Sysadmin and Web Developer passionate about Gardening and Pool.
    <i>Let's Connect and Build Something Together</i>
    <br>
 <br>
-<a target="_blank" href="https://mltydesigns.com/"><img src="https://img.shields.io/badge/-WEB-FF4088?style=for-the-badge&logoColor=white"></img></a>	
-<a target="_blank" href="https://www.linkedin.com/in/meagantruglio/"><img src="https://img.shields.io/badge/-LinkedIn-0077B5?style=for-the-badge&logo=Linkedin&logoColor=white"></img></a>
+<a target="_blank" rel="noopener noreferrer" href="https://mltydesigns.com/"><img src="https://img.shields.io/badge/-WEB-FF4088?style=for-the-badge&logoColor=white"></img></a>	
+<a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/meagantruglio/"><img src="https://img.shields.io/badge/-LinkedIn-0077B5?style=for-the-badge&logo=Linkedin&logoColor=white"></img></a>
 </p>

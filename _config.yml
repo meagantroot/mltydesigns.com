@@ -38,7 +38,7 @@ author:
   spotify: 31igzo3p2vsfgtpvgspqjk566ava
 
 # Pool Scoring App
-poolappversion: "1.3.4"
+poolappversion: "1.3.5"
 
 # Build settings
 theme: minima
@@ -113,6 +113,7 @@ collections:
 #
 # Exclude these files from production site
 exclude:
+  - vendor/
   - CHANGELOG.md
   - CNAME
   - Gemfile
@@ -121,4 +122,3 @@ exclude:
   - README.md
   - screenshot.png
   - docs/
-  - vendor/

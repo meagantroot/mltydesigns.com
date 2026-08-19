@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.3.5 - 2026-08-18
+- Fixed: Corrected malformed Liquid branching in the shared page head.
+- Fixed: Removed duplicate document closing tags from generated pages.
+- Fixed: Corrected the plants table structure and generated plant links.
+- Added: Reusable, accessible blog pagination shared by blog layouts.
+- Accessibility: Restored browser zoom support on mobile devices.
+- Security: Added opener isolation to links that open in a new tab.
+
 ## v1.3.4 - 2026-08-18
 - Build: Pinned Ruby 3.3.0 and Bundler 2.5.3 for reproducible local and automated builds. [faa17e6] - ([@meagantroot])
 - Build: Added a committed dependency lockfile and declared all configured Jekyll plugins directly. [faa17e6] - ([@meagantroot])
