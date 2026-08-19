@@ -2,17 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.3.3 - 2026-08-18
+- Fixed: Backups exported without an active match can now be imported on another device. [3e6e57f] - ([@meagantroot])
+- Fixed: Valid active matches are preserved and restored when importing a backup. [3e6e57f] - ([@meagantroot])
+
+## v1.3.2 - 2026-08-18
+- Security: Added validation, size limits, depth limits, and unsafe-property protection for imported backup files. [d9fb8d2] - ([@meagantroot])
+- Security: Sanitized imported text and escaped match data rendered in history and player statistics. [d9fb8d2] - ([@meagantroot])
+
 ## v1.3.1 - 2026-08-05
-- Fixed: Cleaned up match hisory
-- Fixed: Winner name not being stored to match history
+- Fixed: Cleaned up match history. [c752f4d] - ([@meagantroot])
+- Fixed: Winner name not being stored to match history. [c752f4d] - ([@meagantroot])
 
 ## v1.3 - 2026-08-05
-- Added: New Sudden Death scoring mode
-- Added: Manually choose who shoots first
-
-## v1.2.1
+- Added: New Sudden Death scoring mode. [3d206c0] - ([@meagantroot])
+- Added: Manually choose who shoots first. [3d206c0] - ([@meagantroot])
 
 ## v1.2
+- Unreleased: Abandoned development fork.
 
 ## v1.1.14 - 2026-04-01
 - Added: automatic break and run detection logic. [6ab4847] - ([@meagantroot])
@@ -77,4 +84,8 @@ All notable changes to this project will be documented in this file.
 [546cada]: https://github.com/meagantroot/mltydesigns.com/pull/6/commits/546cadaf4dd90d11a0f839e86e125010e838aa8b
 [e73fcf9]: https://github.com/meagantroot/mltydesigns.com/pull/5/commits/e73fcf9f90bd54acd9e86e5d0a35a3fd1f30f7f6
 [0a92fd5]: https://github.com/meagantroot/mltydesigns.com/pull/4/commits/0a92fd5384d532c20a398b42fb8611ce9173407e
+[3d206c0]: https://github.com/meagantroot/mltydesigns.com/pull/22/commits/3d206c00b77e27590fe6102746293515c2aee2c1
+[c752f4d]: https://github.com/meagantroot/mltydesigns.com/pull/23/commits/c752f4d6de42ea1a4c6335f83ca19074ef55017f
+[d9fb8d2]: https://github.com/meagantroot/mltydesigns.com/pull/24/commits/d9fb8d24f32b1631eaabc901f8898f4ea7b4964c
+[3e6e57f]: https://github.com/meagantroot/mltydesigns.com/pull/25/commits/3e6e57fcc0221270be48cdb72af81e231b0e79cd
 [@meagantroot]: https://github.com/meagantroot
