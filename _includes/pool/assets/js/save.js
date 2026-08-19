@@ -7,7 +7,7 @@ function saveGame() {
 
 // Archive Game
 function archiveMatch() {
-    const history = JSON.parse(localStorage.getItem('pool_match_history') || '[]');
+    const history = readStoredArray('pool_match_history', { removeInvalid: true });
     history.unshift({
         matchId: Date.now().toString(36),
         date: new Date().toLocaleDateString(),

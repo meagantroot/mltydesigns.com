@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.3.6 - 2026-08-18
+- Added: Versioned backup schema with compatibility for backups created before v1.3.6.
+- Fixed: Corrupted or incorrectly shaped browser storage now recovers safely instead of breaking the pool app.
+- Security: Added stricter validation for imported game modes, players, scores, innings, balls, and active-match state.
+- Tests: Added automated storage and backup regression tests to the GitHub Actions build.
+
 ## v1.3.5 - 2026-08-18
 - Fixed: Corrected malformed Liquid branching in the shared page head. [887574b] - ([@meagantroot])
 - Fixed: Removed duplicate document closing tags from generated pages. [887574b] - ([@meagantroot])

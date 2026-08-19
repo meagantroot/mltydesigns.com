@@ -10,6 +10,7 @@ Prerequisites:
 
 - Ruby 3.3.0
 - Bundler 2.5.3
+- Node.js 22 (for the pool app regression tests)
 
 Install the locked dependencies:
 
@@ -31,7 +32,13 @@ Run a strict local build check:
 bundle exec jekyll build --strict_front_matter
 ```
 
-GitHub Pages remains responsible for publishing the site. The workflow in `.github/workflows/build.yml` performs the equivalent production build with GitHub's read-only metadata token; it verifies pull requests and pushes to `main` but does not deploy separately.
+Run the pool storage and backup regression tests:
+
+```bash
+node --test tests/pool-storage.test.js
+```
+
+GitHub Pages remains responsible for publishing the site. The workflow in `.github/workflows/build.yml` runs the pool regression tests and the equivalent production build with GitHub's read-only metadata token; it verifies pull requests and pushes to `main` but does not deploy separately.
 
 
 ### Hi there! I'm Meagan Truglio,

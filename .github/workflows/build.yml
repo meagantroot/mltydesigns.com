@@ -21,6 +21,14 @@ jobs:
         with:
           bundler-cache: true
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Test pool storage and backup handling
+        run: node --test tests/pool-storage.test.js
+
       - name: Build site
         env:
           JEKYLL_ENV: production
