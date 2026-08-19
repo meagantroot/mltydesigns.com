@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.3.4 - 2026-08-18
+- Build: Pinned Ruby 3.3.0 and Bundler 2.5.3 for reproducible local and automated builds. [faa17e6] - ([@meagantroot])
+- Build: Added a committed dependency lockfile and declared all configured Jekyll plugins directly. [faa17e6] - ([@meagantroot])
+- Added: GitHub Actions now verifies strict production Jekyll builds for pull requests and pushes to `main`. [faa17e6] - ([@meagantroot])
+- Added: Documented local setup, preview, and build commands. [faa17e6] - ([@meagantroot])
+- Fixed: Excluded Bundler's `vendor` directory from Jekyll processing so cached dependencies do not break automated builds. [f06e4a4] - ([@meagantroot])
+
 ## v1.3.3 - 2026-08-18
 - Fixed: Backups exported without an active match can now be imported on another device. [3e6e57f] - ([@meagantroot])
 - Fixed: Valid active matches are preserved and restored when importing a backup. [3e6e57f] - ([@meagantroot])
@@ -88,4 +95,6 @@ All notable changes to this project will be documented in this file.
 [c752f4d]: https://github.com/meagantroot/mltydesigns.com/pull/23/commits/c752f4d6de42ea1a4c6335f83ca19074ef55017f
 [d9fb8d2]: https://github.com/meagantroot/mltydesigns.com/pull/24/commits/d9fb8d24f32b1631eaabc901f8898f4ea7b4964c
 [3e6e57f]: https://github.com/meagantroot/mltydesigns.com/pull/25/commits/3e6e57fcc0221270be48cdb72af81e231b0e79cd
+[faa17e6]: https://github.com/meagantroot/mltydesigns.com/pull/26/commits/faa17e6b65915626c826696183fe7e7f68fbc3fd
+[f06e4a4]: https://github.com/meagantroot/mltydesigns.com/pull/26/commits/f06e4a438e6d72154b2ed5ee256bb4e5dad1941b
 [@meagantroot]: https://github.com/meagantroot
