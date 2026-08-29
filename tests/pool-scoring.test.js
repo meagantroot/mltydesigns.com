@@ -1,7 +1,11 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const { calculate9BallLiveScore, calculatePointsNeededToWin } = require(
+const {
+    calculate9BallLiveScore,
+    calculatePointsNeededToWin,
+    is9BallBreakAndRun
+} = require(
     "../_includes/pool/assets/js/rules.js"
 );
 
@@ -62,4 +66,12 @@ test("updates points needed using the live score", () => {
     assert.equal(calculatePointsNeededToWin(before.total, 31), null);
     assert.equal(calculatePointsNeededToWin(afterOneBall.total, 31), 9);
     assert.equal(calculatePointsNeededToWin(afterNineBall.total, 31), 7);
+});
+
+test("awards a 9-ball Break and Run only to the player who broke", () => {
+    const fullRack = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+    assert.equal(is9BallBreakAndRun(fullRack, true), true);
+    assert.equal(is9BallBreakAndRun(fullRack, false), false);
+    assert.equal(is9BallBreakAndRun(fullRack.slice(0, 8), true), false);
 });

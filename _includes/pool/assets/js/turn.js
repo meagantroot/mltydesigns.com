@@ -172,14 +172,8 @@ function handle9Ball(action) {
     
     const containsNine = pocketed.includes(9);
     
-    // Define the full set of balls for 9-ball
-    const nineBallSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-    // Check if every ball in the set is in the 'pocketed' array
-    const tableCleared = nineBallSet.every(ball => pocketed.includes(ball));
-
-    // Update isBnR to trigger on a table clear instead of the 'breakAndRun' action
-    const isBnR = tableCleared;
+    // A table clear is only a Break and Run when the same player also broke.
+    const isBnR = is9BallBreakAndRun(pocketed, isBreakShot);
 
     const isSnap = (containsNine && scratchChecked === false && foulChecked === false && !isBnR && isBreakShot);
 

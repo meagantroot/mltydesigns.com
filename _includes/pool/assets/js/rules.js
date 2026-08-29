@@ -34,6 +34,12 @@ function calculatePointsNeededToWin(score, target, displayThreshold = 9) {
         : null;
 }
 
+function is9BallBreakAndRun(selectedBallIds, isBreakShot) {
+    if (!isBreakShot) return false;
+    return [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        .every(ballId => selectedBallIds.includes(ballId));
+}
+
 // Game Win Map
 const WIN_CHARTS = {
     "9-ball": { 1: 14, 2: 19, 3: 25, 4: 31, 5: 38, 6: 46, 7: 55, 8: 65, 9: 75 },
@@ -45,7 +51,6 @@ const WIN_CHARTS = {
         6: { 2: 2, 3: 2, 4: 3, 5: 4, 6: 5, 7: 5 },
         7: { 2: 2, 3: 2, 4: 2, 5: 3, 6: 4, 7: 5 }
     },
-    // "10-ball": { 1: 2, 2: 2, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 7, 9: 8 }
     "10-ball": {
         2: { 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7 },
         3: { 2: 2, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6 },
@@ -57,5 +62,9 @@ const WIN_CHARTS = {
 };
 
 if (typeof module !== "undefined" && module.exports) {
-    module.exports = { calculate9BallLiveScore, calculatePointsNeededToWin };
+    module.exports = {
+        calculate9BallLiveScore,
+        calculatePointsNeededToWin,
+        is9BallBreakAndRun
+    };
 }
