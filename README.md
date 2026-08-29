@@ -35,7 +35,7 @@ bundle exec jekyll build --strict_front_matter
 Run the pool storage and backup regression tests:
 
 ```bash
-node --test tests/pool-storage.test.js
+node --test tests/*.test.js
 ```
 
 GitHub Pages remains responsible for publishing the site. The workflow in `.github/workflows/build.yml` runs the pool regression tests and the equivalent production build with GitHub's read-only metadata token; it verifies pull requests and pushes to `main` but does not deploy separately.

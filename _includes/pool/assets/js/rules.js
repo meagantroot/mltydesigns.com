@@ -5,6 +5,35 @@ const GAME_RULES = {
     "10-ball": { ballValue: (n) => (n === 8 ? 1 : 0), moneyBall: 10, maxBalls: 10, rackValue: 1 }
 };
 
+function calculate9BallLiveScore(committedScore, target, selectedBallIds, options = {}) {
+    const selectedPoints = selectedBallIds.reduce(
+        (total, ballId) => total + (ballId === 9 ? 2 : 1),
+        0
+    );
+
+    let pendingPoints = selectedPoints;
+    if (options.singleRack) {
+        pendingPoints = selectedBallIds.includes(9)
+            ? Math.max(target - committedScore, 0)
+            : 0;
+    } else if (options.suddenDeath) {
+        pendingPoints *= 2;
+    }
+
+    return {
+        committed: committedScore,
+        pending: pendingPoints,
+        total: committedScore + pendingPoints
+    };
+}
+
+function calculatePointsNeededToWin(score, target, displayThreshold = 9) {
+    const pointsNeeded = Math.max(target - score, 0);
+    return pointsNeeded >= 1 && pointsNeeded <= displayThreshold
+        ? pointsNeeded
+        : null;
+}
+
 // Game Win Map
 const WIN_CHARTS = {
     "9-ball": { 1: 14, 2: 19, 3: 25, 4: 31, 5: 38, 6: 46, 7: 55, 8: 65, 9: 75 },
@@ -26,3 +55,7 @@ const WIN_CHARTS = {
         7: { 2: 2, 3: 2, 4: 2, 5: 3, 6: 4, 7: 5 }
     },
 };
+
+if (typeof module !== "undefined" && module.exports) {
+    module.exports = { calculate9BallLiveScore, calculatePointsNeededToWin };
+}
