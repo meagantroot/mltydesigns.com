@@ -3,11 +3,11 @@
 All notable changes to this project will be documented in this file.
 
 ## v1.3.7 - 2026-08-29
-- Added: 9-ball scores now update in real time as balls are selected or deselected.
-- Added: A real-time points-to-win countdown appears when a player needs nine or fewer points to win.
-- Fixed: 9-ball Break and Run awards now require the player to have taken the opening break shot.
-- Tests: Added automated coverage for standard, Sudden Death, and Single Rack live-scoring behavior.
-- Removed: The site-wide contact form and Formbricks integration to reduce spam.
+- Added: 9-ball scores now update in real time as balls are selected or deselected. [0e6536d] - ([@meagantroot])
+- Added: A real-time points-to-win countdown appears when a player needs nine or fewer points to win. [0e6536d] - ([@meagantroot])
+- Fixed: 9-ball Break and Run awards now require the player to have taken the opening break shot. [9a9d4a2] - ([@meagantroot])
+- Tests: Added automated coverage for standard, Sudden Death, and Single Rack live-scoring behavior. [0e6536d] - ([@meagantroot])
+- Removed: The site-wide contact form and Formbricks integration to reduce spam. [0e6536d] [5d4a02f] - ([@meagantroot])
 
 ## v1.3.6 - 2026-08-18
 - Added: Versioned backup schema with compatibility for backups created before v1.3.6. [70e8f5f] - ([@meagantroot])
@@ -120,4 +120,7 @@ All notable changes to this project will be documented in this file.
 [f06e4a4]: https://github.com/meagantroot/mltydesigns.com/pull/26/commits/f06e4a438e6d72154b2ed5ee256bb4e5dad1941b
 [887574b]: https://github.com/meagantroot/mltydesigns.com/pull/27/commits/887574b9cbd3e7958530f0c65cb1f00e1cbbf17c
 [70e8f5f]: https://github.com/meagantroot/mltydesigns.com/pull/28/commits/70e8f5fb6de9598c7eca6b3532c5b03dc3c83407
+[0e6536d]: https://github.com/meagantroot/mltydesigns.com/pull/29/commits/0e6536dfa7ea7d92d653e5a58ebc28330d800088
+[5d4a02f]: https://github.com/meagantroot/mltydesigns.com/pull/29/commits/5d4a02fd4f5b04affba33aa51f379629b807d6d1
+[9a9d4a2]: https://github.com/meagantroot/mltydesigns.com/pull/30/commits/9a9d4a223a7b6f83276f59b5fa3093b142dd7689
 [@meagantroot]: https://github.com/meagantroot
