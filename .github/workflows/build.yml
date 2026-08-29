@@ -27,7 +27,7 @@ jobs:
           node-version: 22
 
       - name: Test pool storage and backup handling
-        run: node --test tests/pool-storage.test.js
+        run: node --test tests/*.test.js
 
       - name: Build site
         env:

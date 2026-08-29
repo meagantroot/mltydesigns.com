@@ -33,6 +33,38 @@ function render() {
     const active = gameState.players[gameState.currentTurn];
     const rules = GAME_RULES[gameState.mode];
 
+    const selected9BallIds = gameState.mode === '9-ball'
+        ? gameState.table
+            .filter(ball => ball.state === 'selected')
+            .map(ball => ball.id)
+        : [];
+    const live9BallOptions = {
+        singleRack: Boolean(document.getElementById('gameStyleSingle')?.checked),
+        suddenDeath: Boolean(document.getElementById('gameStyleSuddenDeath')?.checked)
+    };
+    const playerScores = gameState.players.map((player, playerIndex) => {
+        if (gameState.mode !== '9-ball' || playerIndex !== gameState.currentTurn) {
+            return { total: player.score, pending: 0 };
+        }
+        return calculate9BallLiveScore(
+            player.score,
+            player.target,
+            selected9BallIds,
+            live9BallOptions
+        );
+    });
+
+    const renderScore = (player, playerIndex) => {
+        const liveScore = playerScores[playerIndex];
+        const pointsNeeded = gameState.mode === '9-ball'
+            ? calculatePointsNeededToWin(liveScore.total, player.target)
+            : null;
+        const pointsToWinLabel = pointsNeeded !== null
+            ? `<small class="d-block text-info">${pointsNeeded} ${pointsNeeded === 1 ? 'point' : 'points'} to win</small>`
+            : '';
+        return `${liveScore.total}/${player.target} pts${pointsToWinLabel}`;
+    };
+
 const ballGrid = `
 <div class="row row-cols-5 g-1"> 
     ${gameState.table.slice(0, rules.maxBalls).map(b => {
@@ -59,7 +91,7 @@ const ballGrid = `
         <div class="body m-0 p-0" style="display:flex; justify-content:space-between;">
             <div style="flex:1; ${gameState.currentTurn === 0 ? 'color:var(--bs-success); font-weight:bold' : ''}">
                 <div style="font-size:1.2em;">${p1.name}</div>
-                <div>${p1.score}/${p1.target} pts</div>
+                <div>${renderScore(p1, 0)}</div>
                 <div><small>${p1.group ? `${p1.group}` : ''}</small></div>
             </div>
             <div style="flex:1.0; align-self:center; text-align: center; font-weight:bold;">
@@ -69,7 +101,7 @@ const ballGrid = `
             </div>
             <div style="text-align:right; flex:1; ${gameState.currentTurn === 1 ? 'color:var(--bs-success); font-weight:bold' : ''}">
                 <div style="font-size:1.2em;">${p2.name}</div>
-                <div>${p2.score}/${p2.target} pts</div>
+                <div>${renderScore(p2, 1)}</div>
                 <div><small>${p2.group ? `${p2.group}` : ''}</small></div>
             </div>
         </div>

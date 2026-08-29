@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.3.7 - 2026-08-29
+- Added: 9-ball scores now update in real time as balls are selected or deselected.
+- Added: A real-time points-to-win countdown appears when a player needs nine or fewer points to win.
+- Tests: Added automated coverage for standard, Sudden Death, and Single Rack live-scoring behavior.
+- Removed: The site-wide contact form and Formbricks integration to reduce spam risk.
+
 ## v1.3.6 - 2026-08-18
 - Added: Versioned backup schema with compatibility for backups created before v1.3.6. [70e8f5f] - ([@meagantroot])
 - Fixed: Corrupted or incorrectly shaped browser storage now recovers safely instead of breaking the pool app. [70e8f5f] - ([@meagantroot])

@@ -38,7 +38,7 @@ author:
   spotify: 31igzo3p2vsfgtpvgspqjk566ava
 
 # Pool Scoring App
-poolappversion: "1.3.6"
+poolappversion: "1.3.7"
 
 # Build settings
 theme: minima
@@ -47,15 +47,6 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-redirect-from
-
-# Form
-formbricks_environment_id: "cmlvsyd9km9wcu4011cb75i2c"
-formbricks_form_id: "cmlvtdij7mfk9uf01yom0e3zo"
-
-# Contact Form
-formbricks_form_question_1_id: "ewf5htwkwph2gjczn9crpp71"
-formbricks_form_question_2_id: "ualo5jj37y0sslmn8jy9j0og"
-formbricks_form_question_3_id: "b7ftpu50yawzy64h8yr1flvu"
 
 # Post Feed
 paginate: 10
