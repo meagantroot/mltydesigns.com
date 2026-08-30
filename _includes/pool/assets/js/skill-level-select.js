@@ -52,6 +52,7 @@ function updateSkillLimits() {
             input.dispatchEvent(new Event('input'));
         }
     });
+    if (typeof refreshSelectedProfileSkills === 'function') refreshSelectedProfileSkills();
 }
 
 // Keep your existing listeners

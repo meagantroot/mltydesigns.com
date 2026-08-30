@@ -1,15 +1,15 @@
 // Save Game on Win
 
 function saveGame() {
-    localStorage.setItem('pool_score_data', JSON.stringify(gameState));
+    PoolStorage.saveActiveMatch(gameState);
     render(); updateStorageMeter(); updateLifetimeStats();displayHistory();
 }
 
 // Archive Game
 function archiveMatch() {
-    const history = readStoredArray('pool_match_history', { removeInvalid: true });
+    const history = PoolStorage.loadHistory();
     history.unshift({
-        matchId: Date.now().toString(36),
+        matchId: PoolStorage.createMatchId(),
         date: new Date().toLocaleDateString(),
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         mode: gameState.mode,
@@ -19,6 +19,7 @@ function archiveMatch() {
         racks: (gameState.currentRack - 1),
         players: gameState.players.map(p => ({ 
             name: p.name,
+            playerId: p.playerId,
             skill: p.skill,
             score: p.score,
             target: p.target,
@@ -34,7 +35,7 @@ function archiveMatch() {
             breakandrun: p.breakandruns
         }))
     });
-    localStorage.setItem('pool_match_history', JSON.stringify(history.slice(0, 50)));
+    PoolStorage.saveHistory(history);
     console.log(gameState.winner);
 }
 
@@ -60,10 +61,11 @@ function resetGame() {
     document.getElementById('setup-form').style.display = 'block';
     
     // Clear the localStorage so a fresh game doesn't load the old one
-    localStorage.removeItem('pool_score_data');
+    PoolStorage.clearActiveMatch();
     
     // Reset any local variables if necessary
-    gameState = null; 
+    gameState = null;
+    updateLandscapeScoreboard();
 }
 
 // This creates a copy so the history doesn't change when the current gameState changes later.

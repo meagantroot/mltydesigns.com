@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.4 - 2026-08-30
+- Added: Stored player profiles with canonical names and separate skill levels for 8-ball, 9-ball, and 10-ball.
+- Added: Existing players can be selected during match setup, with a quick-add option that opens the player profile workflow.
+- Added: Historical match names can be mapped to stored profiles, updating both statistics and displayed match names.
+- Added: Individual matches can be deleted without removing player profiles or unrelated match data.
+- Added: Landscape mode displays a large, real-time view of the active match's player names, scores, and inning count, while retaining the rotate-device message when no match is active.
+- Improved: Unified pool data storage, recovery, legacy-data upgrades, and merge or overwrite backup imports.
+- Fixed: Inning counts now advance only after both players complete their turns, and remain unchanged when a money ball starts a new rack.
+- Fixed: Merge imports no longer duplicate the same stable match when a historical player was renamed through profile mapping.
+- Security: Current, recovery, imported, and legacy datasets are sanitized and validated before use.
+- Security: Player names rendered in the live scoreboard and coin-flip interface are encoded or inserted as text.
+- Security: Updated DOMPurify to 3.4.13, self-hosted its browser assets, and removed the third-party Buy Me a Coffee script.
+- Tests: Expanded storage regression coverage for profiles, mapping, imports, deletion, default skills, and stored-data sanitation.
+
 ## v1.3.7 - 2026-08-29
 - Added: 9-ball scores now update in real time as balls are selected or deselected. [0e6536d] - ([@meagantroot])
 - Added: A real-time points-to-win countdown appears when a player needs nine or fewer points to win. [0e6536d] - ([@meagantroot])

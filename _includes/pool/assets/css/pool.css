@@ -439,3 +439,52 @@ input[type="text"] {
 @keyframes spin { 100% { transform: rotateY(360deg); } }
 .player-box { padding: 15px; border: 2px solid #eee; border-radius: 12px; margin-bottom: 20px; }
 .disabled-box { opacity: 0.4; pointer-events: none; }
+
+/* Landscape match scoreboard */
+
+.landscape-scoreboard {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(1rem, 4vw, 4rem);
+    min-height: 100dvh;
+    padding: clamp(1rem, 3vw, 3rem);
+    text-align: center;
+}
+
+.landscape-player {
+    min-width: 0;
+}
+
+.landscape-player-name {
+    overflow: hidden;
+    margin-bottom: clamp(1rem, 4vh, 2.5rem);
+    font-size: clamp(1.75rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.landscape-player-score {
+    font-size: clamp(5rem, 17vw, 14rem);
+    font-weight: 800;
+    line-height: 0.9;
+}
+
+.landscape-match-details {
+    align-self: end;
+    padding-bottom: clamp(1rem, 4vh, 3rem);
+}
+
+.landscape-inning-label {
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.landscape-inning {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1;
+}

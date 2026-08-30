@@ -1,10 +1,13 @@
 // Load Game
 
 function loadGame() {
-    const saved = readStoredJson('pool_score_data', null, {
-        removeInvalid: true,
-        onError: () => alert('The saved active match was corrupted and could not be restored. Match history was not affected.')
-    });
+    let saved = null;
+    try {
+        saved = PoolStorage.loadActiveMatch();
+    } catch (error) {
+        console.error('Saved pool dataset could not be loaded:', error);
+        alert('Saved pool data was corrupted and could not be restored. Your legacy and recovery copies were left unchanged.');
+    }
     if (!saved) return;
 
     try {
@@ -16,7 +19,7 @@ function loadGame() {
         showGameUI();
     } catch (error) {
         console.error('Invalid active match:', error);
-        localStorage.removeItem('pool_score_data');
+        PoolStorage.clearActiveMatch();
         alert('The saved active match was invalid and could not be restored. Match history was not affected.');
     }
 }
@@ -26,7 +29,10 @@ function loadGame() {
 function render() {
 
     const container = document.getElementById('player-container');
-    if (!gameState || !container) return;
+    if (!gameState || !container) {
+        updateLandscapeScoreboard();
+        return;
+    }
 
     const p1 = gameState.players[0];
     const p2 = gameState.players[1];
@@ -53,6 +59,7 @@ function render() {
             live9BallOptions
         );
     });
+    updateLandscapeScoreboard(playerScores.map(score => score.total));
 
     const renderScore = (player, playerIndex) => {
         const liveScore = playerScores[playerIndex];
@@ -64,6 +71,9 @@ function render() {
             : '';
         return `${liveScore.total}/${player.target} pts${pointsToWinLabel}`;
     };
+    const p1Name = escapeHtml(p1.name);
+    const p2Name = escapeHtml(p2.name);
+    const activeName = escapeHtml(active.name);
 
 const ballGrid = `
 <div class="row row-cols-5 g-1"> 
@@ -90,17 +100,17 @@ const ballGrid = `
         <!-- Scoreboard Header -->
         <div class="body m-0 p-0" style="display:flex; justify-content:space-between;">
             <div style="flex:1; ${gameState.currentTurn === 0 ? 'color:var(--bs-success); font-weight:bold' : ''}">
-                <div style="font-size:1.2em;">${p1.name}</div>
+                <div style="font-size:1.2em;">${p1Name}</div>
                 <div>${renderScore(p1, 0)}</div>
                 <div><small>${p1.group ? `${p1.group}` : ''}</small></div>
             </div>
             <div style="flex:1.0; align-self:center; text-align: center; font-weight:bold;">
                 <h3 style="margin:0;"><small>Shooting:</small><br/>
-                <strong><span style="color:var(--bs-success)">${active.name}</span></strong></h3>
+                <strong><span style="color:var(--bs-success)">${activeName}</span></strong></h3>
                 <p class="m-0 p-0">Inning: ${gameState.currentInningIndex}</p>
             </div>
             <div style="text-align:right; flex:1; ${gameState.currentTurn === 1 ? 'color:var(--bs-success); font-weight:bold' : ''}">
-                <div style="font-size:1.2em;">${p2.name}</div>
+                <div style="font-size:1.2em;">${p2Name}</div>
                 <div>${renderScore(p2, 1)}</div>
                 <div><small>${p2.group ? `${p2.group}` : ''}</small></div>
             </div>
@@ -158,7 +168,7 @@ const ballGrid = `
                 </div>
             </div>
             <div class="row mt-1 g-1">
-                <div class="col w-100"><button class="btn btn-success w-100 p-3 m-0" onclick="handleTurn('score')">End ${active.name}'s Turn</button></div>
+                <div class="col w-100"><button class="btn btn-success w-100 p-3 m-0" onclick="handleTurn('score')">End ${activeName}'s Turn</button></div>
             </div>
         </div>
     </div>`;

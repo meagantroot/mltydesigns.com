@@ -2,7 +2,9 @@
 
 function updateLifetimeStats() {
 
-    const h = readStoredArray('pool_match_history', { removeInvalid: true });
+    const h = PoolStorage.loadHistory();
+    const profiles = PoolStorage.loadProfiles();
+    const profilesById = new Map(profiles.map(profile => [profile.playerId, profile]));
     const container = document.getElementById('lifetime-stats-content');
 
     const rawInput = document.getElementById('playerSearch')?.value || "";
@@ -23,28 +25,32 @@ const searchTerm = DOMPurify.sanitize(searchTermStrip);
 
     h.forEach(m => {
         m.players.forEach(p => {
-            const name = p.name || "Unknown Player";
-            if (!statsByPlayer[name]) {
-                statsByPlayer[name] = { wins: 0, games: 0, scratches: 0, miscues: 0, fouls: 0, escapes: 0, kickshots: 0, safeties: 0, bnr: 0, snap9: 0, break8: 0 };
+            const profile = p.playerId ? profilesById.get(p.playerId) : null;
+            const name = profile?.name || p.name || "Unknown Player";
+            const statsKey = profile ? `profile:${profile.playerId}` : `name:${normalizePlayerName(name)}`;
+            if (!statsByPlayer[statsKey]) {
+                statsByPlayer[statsKey] = { name, wins: 0, games: 0, scratches: 0, miscues: 0, fouls: 0, escapes: 0, kickshots: 0, safeties: 0, bnr: 0, snap9: 0, break8: 0 };
             }
-            statsByPlayer[name].games++;
-            if (p.won) statsByPlayer[name].wins++;
-            statsByPlayer[name].scratches += parseInt(p.scratches || 0);
-            statsByPlayer[name].miscues += parseInt(p.miscues || 0);
-            statsByPlayer[name].fouls += parseInt(p.fouls || 0);
-            statsByPlayer[name].escapes += parseInt(p.escapes || 0);
-            statsByPlayer[name].kickshots += parseInt(p.kickshots || 0);
-            statsByPlayer[name].safeties += parseInt(p.safeties || 0);
-            statsByPlayer[name].bnr += parseInt(p.breakandrun || 0);
-            statsByPlayer[name].break8 += parseInt(p.count8onbreak || 0);
-            statsByPlayer[name].snap9 += parseInt(p.count9onsnap || 0);
+            const stats = statsByPlayer[statsKey];
+            stats.games++;
+            if (p.won) stats.wins++;
+            stats.scratches += parseInt(p.scratches || 0);
+            stats.miscues += parseInt(p.miscues || 0);
+            stats.fouls += parseInt(p.fouls || 0);
+            stats.escapes += parseInt(p.escapes || 0);
+            stats.kickshots += parseInt(p.kickshots || 0);
+            stats.safeties += parseInt(p.safeties || 0);
+            stats.bnr += parseInt(p.breakandrun || 0);
+            stats.break8 += parseInt(p.count8onbreak || 0);
+            stats.snap9 += parseInt(p.count9onsnap || 0);
         });
     });
 
-    const htmlArray = Object.entries(statsByPlayer)
-        .filter(([name]) => name.toLowerCase().includes(searchTerm))
-        .sort(([nameA], [nameB]) => nameA.localeCompare(nameB)) 
-        .map(([name, s], index) => {
+    const htmlArray = Object.values(statsByPlayer)
+        .filter(stats => stats.name.toLowerCase().includes(searchTerm))
+        .sort((left, right) => left.name.localeCompare(right.name)) 
+        .map((s, index) => {
+            const name = s.name;
             const safeName = escapeHtml(name);
             const winRate = ((s.wins / s.games || 0) * 100).toFixed(1);
             const avgScratches = (s.scratches / s.games|| 0).toFixed(1);
@@ -54,7 +60,6 @@ const searchTerm = DOMPurify.sanitize(searchTermStrip);
             const avgEscapes = (s.escapes / s.games|| 0).toFixed(1);
             const avgKickshots = (s.kickshots / s.games || 0).toFixed(1);
             const avgSafeties = (s.safeties / s.games || 0).toFixed(1);
-
         return `
           <div class="accordion-item" id="player-container-${index}">
             <h2 class="accordion-header">
@@ -76,7 +81,7 @@ const searchTerm = DOMPurify.sanitize(searchTermStrip);
                             <div class="chart-inner"><span style="font-size: 0.75rem;margin-bottom: 0.50rem;">Win</span>${winRate}%<span style="font-size: 0.75rem; margin-top: 0.50rem;">Rate</span></div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-9 p-1 text-center"">
+                    <div class="col-xs-12 col-sm-9 p-1 text-center">
                         <div class="row">
                             <div class="col p-1 text-center">
                                 <p class="mb-0">Break & Run</p>
