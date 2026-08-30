@@ -14,7 +14,7 @@ function archiveMatch() {
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         mode: gameState.mode,
         winner: gameState.winner,
-        innings: (gameState.currentInningIndex -1),
+        innings: gameState.currentInningIndex,
         inningdata: gameState.innings,
         racks: (gameState.currentRack - 1),
         players: gameState.players.map(p => ({ 
