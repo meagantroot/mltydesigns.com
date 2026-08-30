@@ -154,6 +154,33 @@ test("rejects invalid ball data", () => {
     assert.throws(() => validateImportedBackup(data), /ball number between 1 and 15/);
 });
 
+test("accepts a valid inning that spans multiple racks", () => {
+    const data = backup({
+        history: [{
+            mode: "9-ball",
+            players: [player("Ada"), player("Grace")],
+            inningdata: [{
+                0: { balls: [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7] },
+                1: { balls: [] }
+            }]
+        }]
+    });
+
+    assert.doesNotThrow(() => validateImportedBackup(data));
+});
+
+test("rejects an excessively large multi-rack inning", () => {
+    const data = backup({
+        history: [{
+            mode: "9-ball",
+            players: [player("Ada"), player("Grace")],
+            inningdata: [{ 0: { balls: Array(151).fill(1) }, 1: { balls: [] } }]
+        }]
+    });
+
+    assert.throws(() => validateImportedBackup(data), /no more than 150 balls/);
+});
+
 test("rejects prototype-pollution keys", () => {
     const unsafe = JSON.parse('{"history":[],"__proto__":{"admin":true}}');
     assert.throws(() => sanitizeImportedValue(unsafe), /unsafe property/);
