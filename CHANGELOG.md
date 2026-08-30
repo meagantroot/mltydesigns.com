@@ -3,18 +3,18 @@
 All notable changes to this project will be documented in this file.
 
 ## v1.4 - 2026-08-30
-- Added: Stored player profiles with canonical names and separate skill levels for 8-ball, 9-ball, and 10-ball.
-- Added: Existing players can be selected during match setup, with a quick-add option that opens the player profile workflow.
-- Added: Historical match names can be mapped to stored profiles, updating both statistics and displayed match names.
-- Added: Individual matches can be deleted without removing player profiles or unrelated match data.
-- Added: Landscape mode displays a large, real-time view of the active match's player names, scores, and inning count, while retaining the rotate-device message when no match is active.
-- Improved: Unified pool data storage, recovery, legacy-data upgrades, and merge or overwrite backup imports.
-- Fixed: Inning counts now advance only after both players complete their turns, and remain unchanged when a money ball starts a new rack.
-- Fixed: Merge imports no longer duplicate the same stable match when a historical player was renamed through profile mapping.
-- Security: Current, recovery, imported, and legacy datasets are sanitized and validated before use.
-- Security: Player names rendered in the live scoreboard and coin-flip interface are encoded or inserted as text.
-- Security: Updated DOMPurify to 3.4.13, self-hosted its browser assets, and removed the third-party Buy Me a Coffee script.
-- Tests: Expanded storage regression coverage for profiles, mapping, imports, deletion, default skills, and stored-data sanitation.
+- Added: Stored player profiles with canonical names and separate skill levels for 8-ball, 9-ball, and 10-ball. [2fc8a06] - ([@meagantroot])
+- Added: Existing players can be selected during match setup, with a quick-add option that opens the player profile workflow. [2fc8a06] - ([@meagantroot])
+- Added: Historical match names can be mapped to stored profiles, updating both statistics and displayed match names. [2fc8a06] - ([@meagantroot])
+- Added: Individual matches can be deleted without removing player profiles or unrelated match data. [2fc8a06] - ([@meagantroot])
+- Added: Landscape mode displays a large, real-time view of the active match's player names, scores, and inning count, while retaining the rotate-device message when no match is active. [2fc8a06] - ([@meagantroot])
+- Improved: Unified pool data storage, recovery, legacy-data upgrades, and merge or overwrite backup imports. [2fc8a06] - ([@meagantroot])
+- Fixed: Inning counts now advance only after both players complete their turns, and remain unchanged when a money ball starts a new rack. [2fc8a06] - ([@meagantroot])
+- Fixed: Merge imports no longer duplicate the same stable match when a historical player was renamed through profile mapping. [2fc8a06] - ([@meagantroot])
+- Security: Current, recovery, imported, and legacy datasets are sanitized and validated before use. [2fc8a06] - ([@meagantroot])
+- Security: Player names rendered in the live scoreboard and coin-flip interface are encoded or inserted as text. [2fc8a06] - ([@meagantroot])
+- Security: Updated DOMPurify to 3.4.13, self-hosted its browser assets, and removed the third-party Buy Me a Coffee script. [2fc8a06] - ([@meagantroot])
+- Tests: Expanded storage regression coverage for profiles, mapping, imports, deletion, default skills, and stored-data sanitation. [2fc8a06] - ([@meagantroot])
 
 ## v1.3.7 - 2026-08-29
 - Added: 9-ball scores now update in real time as balls are selected or deselected. [0e6536d] - ([@meagantroot])
@@ -137,4 +137,5 @@ All notable changes to this project will be documented in this file.
 [0e6536d]: https://github.com/meagantroot/mltydesigns.com/pull/29/commits/0e6536dfa7ea7d92d653e5a58ebc28330d800088
 [5d4a02f]: https://github.com/meagantroot/mltydesigns.com/pull/29/commits/5d4a02fd4f5b04affba33aa51f379629b807d6d1
 [9a9d4a2]: https://github.com/meagantroot/mltydesigns.com/pull/30/commits/9a9d4a223a7b6f83276f59b5fa3093b142dd7689
+[2fc8a06]: https://github.com/meagantroot/mltydesigns.com/pull/31/commits/2fc8a065d269aa9fcafb1e437e082af9531784d9
 [@meagantroot]: https://github.com/meagantroot
