@@ -5,6 +5,7 @@ const MAX_IMPORTED_MATCHES = 250;
 const MAX_PLAYER_PROFILES = 100;
 const MAX_IMPORT_DEPTH = 20;
 const MAX_IMPORT_VALUES = 25000;
+const MAX_BALLS_PER_INNING = 150;
 const BACKUP_SCHEMA_VERSION = 2;
 const LEGACY_BACKUP_SCHEMA_VERSION = 1;
 const POOL_DATASET_KEY = "pool_dataset";
@@ -154,8 +155,8 @@ function validatePlayerProfile(profile, index) {
 
 function validateBallList(value, fieldName) {
     if (value === undefined) return;
-    if (!Array.isArray(value) || value.length > 15) {
-        throw new Error(`${fieldName} must be an array containing no more than 15 balls.`);
+    if (!Array.isArray(value) || value.length > MAX_BALLS_PER_INNING) {
+        throw new Error(`${fieldName} must be an array containing no more than ${MAX_BALLS_PER_INNING} balls.`);
     }
     value.forEach((ball, index) => {
         if (!Number.isInteger(ball) || ball < 1 || ball > 15) {
