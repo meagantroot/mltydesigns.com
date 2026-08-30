@@ -447,12 +447,16 @@ if (pocketed && pocketed.length > 0) {
         gameState.table.forEach(b => { if(b.state === 'pocketed') b.state = 'dead'; });
         gameState.currentRack += 1;
         resetTable(); // Resets balls/rackShotCount but KEEPS match innings
-        
-        // Advance the inning row immediately when a rack ends to keep logic clean
-        gameState.currentInningIndex++;
-        
-        // If someone lost early, the opponent starts the next rack
-        if (earlyLoss) switchTurn();
+
+        // Completing a rack does not complete an inning. The inning advances
+        // only after both players have had their turn and play returns to P1.
+
+        // If someone lost early, the opponent starts the next rack. Returning
+        // from P2 to P1 completes the normal two-player inning cycle.
+        if (earlyLoss) {
+            if (gameState.currentTurn === 1) gameState.currentInningIndex++;
+            switchTurn();
+        }
     } else {
         markBallsDead();
         markBallsPocketed();

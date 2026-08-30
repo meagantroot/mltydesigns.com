@@ -1,7 +1,7 @@
 // Game History
 
 function displayHistory() {
-    const h = readStoredArray('pool_match_history', { removeInvalid: true });
+    const h = PoolStorage.loadHistory();
     const container = document.getElementById('history-list');
     
     // Get the search term from the input field
@@ -231,8 +231,9 @@ return `
 
       ${tableSection}
 
-      <div class="text-right m-0 p-0 text-xsmall">
-        ${m.matchId ? `<small>Match id: ${matchId}</small>` : ''}
+      <div class="d-flex justify-content-between align-items-center gap-2 mt-2 p-0 text-xsmall">
+        ${m.matchId ? `<small>Match id: ${matchId}</small>` : '<span></span>'}
+        ${m.matchId ? `<button class="btn btn-sm btn-outline-danger" type="button" data-match-id="${matchId}" onclick="deleteMatchFromHistory(this)">Delete Match</button>` : ''}
       </div>
     </div>
   </div>
@@ -241,4 +242,23 @@ return `
 
     // Render output or a "Not Found" message
     container.innerHTML = htmlOutput || `<div class="p-3 text-center text-muted">No players found matching that name.</div>`;
+}
+
+function deleteMatchFromHistory(button) {
+    const matchId = button?.dataset.matchId;
+    const match = PoolStorage.loadHistory().find(item => item.matchId === matchId);
+    if (!match) {
+        alert('This match could not be found. Refresh the page and try again.');
+        return;
+    }
+    const playerNames = match.players.map(player => player.name).join(' vs. ');
+    if (!confirm(`Delete the ${match.mode} match between ${playerNames}? This cannot be undone from the app.`)) return;
+    if (!PoolStorage.deleteMatch(matchId)) {
+        alert('This match could not be deleted. Refresh the page and try again.');
+        return;
+    }
+    displayHistory();
+    updateLifetimeStats();
+    updateStorageMeter();
+    if (typeof refreshPlayerProfileUI === 'function') refreshPlayerProfileUI();
 }

@@ -38,6 +38,14 @@ Run the pool storage and backup regression tests:
 node --test tests/*.test.js
 ```
 
+## Pool data storage
+
+Pool match data remains in the browser's `localStorage`. The app stores the active match and match history in one versioned dataset, verifies writes before replacing the current copy, and retains a previous verified copy for recovery. Existing legacy browser data and schema-v1 backup files are upgraded automatically when read.
+
+Backup imports offer two modes: **Merge** adds non-duplicate matches and preserves conflicting records, while **Overwrite** replaces the device's active match and history after validation and confirmation.
+
+Stored player profiles keep a canonical player name and separate skill levels for each game mode. Mapping a historical player name assigns the stable `playerId` and updates those match entries to the profile's canonical name, allowing history and statistics to consistently combine explicitly mapped variants.
+
 GitHub Pages remains responsible for publishing the site. The workflow in `.github/workflows/build.yml` runs the pool regression tests and the equivalent production build with GitHub's read-only metadata token; it verifies pull requests and pushes to `main` but does not deploy separately.
 
 

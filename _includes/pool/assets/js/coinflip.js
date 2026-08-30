@@ -49,7 +49,7 @@ function flipCoin() {
             document.getElementById('p2Starts').checked = true; // Syncs with your radio logic
         }
 
-        status.innerHTML = clean(winMsg) + "!";
+        status.textContent = clean(winMsg) + "!";
         status.className = "mt-0 fw-bold text-success text-center"; // Make the win message pop
 
         // Toggle Buttons
@@ -73,7 +73,10 @@ function resetCoinGame() {
     document.getElementById('status-text').className = "mt-0 text-center";
     document.getElementById('start-match-btn').classList.add('hidden');
 
-    // Update the text (This creates the span and the name at the same time)
-    document.getElementById('status-text').innerHTML = `<span id="coin-p1-status">${p1Name}</span> Chooses!`;
+    // Build the player label as text so a stored name is never interpreted as HTML.
+    const status = document.getElementById('status-text');
+    const playerName = document.createElement('span');
+    playerName.id = 'coin-p1-status';
+    playerName.textContent = p1Name;
+    status.replaceChildren(playerName, document.createTextNode(' Chooses!'));
 }
-

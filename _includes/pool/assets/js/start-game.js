@@ -72,17 +72,19 @@ function startGame() {
     const p2Clean = clean(p2NameInput.value) || "Player 2";
     const p1S = parseInt(p1SkillInput.value);
     const p2S = parseInt(p2SkillInput.value);
+    const p1ProfileId = document.getElementById('p1Profile')?.value || undefined;
+    const p2ProfileId = document.getElementById('p2Profile')?.value || undefined;
 
     // Check the Radio Buttons for the winner
     const p1Starts = document.getElementById('p1Starts').checked;
 
     let player1, player2;
     if (p1Starts) {
-        player1 = { name: p1Clean, skill: p1S };
-        player2 = { name: p2Clean, skill: p2S };
+        player1 = { name: p1Clean, skill: p1S, playerId: p1ProfileId };
+        player2 = { name: p2Clean, skill: p2S, playerId: p2ProfileId };
     } else {
-        player1 = { name: p2Clean, skill: p2S };
-        player2 = { name: p1Clean, skill: p1S };
+        player1 = { name: p2Clean, skill: p2S, playerId: p2ProfileId };
+        player2 = { name: p1Clean, skill: p1S, playerId: p1ProfileId };
     }
 
 
@@ -101,6 +103,7 @@ gameState = {
     players: [
         { 
             name: clean(player1.name),
+            playerId: player1.playerId,
             skill: player1.skill,
             target: isSingleGame ? 1 : (WIN_CHARTS[mode][player2.skill] && WIN_CHARTS[mode][player2.skill][player1.skill]) || (WIN_CHARTS[mode][player1.skill]),
             score: 0,
@@ -119,6 +122,7 @@ gameState = {
         },
         { 
             name: clean(player2.name),
+            playerId: player2.playerId,
             skill: player2.skill,
             target: isSingleGame ? 1 : (WIN_CHARTS[mode][player1.skill] && WIN_CHARTS[mode][player1.skill][player2.skill]) || (WIN_CHARTS[mode][player2.skill]),
             score: 0,
@@ -149,14 +153,20 @@ function setNames() {
     const p2NameInput = document.getElementById('p2Name');
     const p1SkillInput = document.getElementById('p1Skill');
     const p2SkillInput = document.getElementById('p2Skill');
+    const p1ProfileId = document.getElementById('p1Profile')?.value;
+    const p2ProfileId = document.getElementById('p2Profile')?.value;
     
     // Note: If this is the first time running, p1Starts might be null. 
     // We add a check to prevent errors.
     const p1StartsBtn = document.getElementById('p1Starts');
     const p1Selected = p1StartsBtn ? p1StartsBtn.checked : true;
 
-    if (!p1NameInput.checkValidity() || !p2NameInput.checkValidity()) {
-        p1NameInput.reportValidity() || p2NameInput.reportValidity();
+    if (!p1ProfileId || !p2ProfileId) {
+        alert('Choose both players before starting the match.');
+        return;
+    }
+    if (p1ProfileId === p2ProfileId) {
+        alert('Choose two different players before starting the match.');
         return;
     }
 
@@ -170,11 +180,9 @@ function setNames() {
     const p1S = parseInt(p1SkillInput.value);
     const p2S = parseInt(p2SkillInput.value);
 
-    // Validation check (Your requested reload logic)
-    if (p1Clean === "" || p2Clean === "") { 
-        alert("Please Enter a valid Player Name"); 
-        location.reload(); 
-        exit; 
+    if (p1Clean === "" || p2Clean === "") {
+        alert('The selected player profile is invalid. Please select the player again.');
+        return;
     }
 
     // Update Radio Labels
@@ -198,12 +206,12 @@ function setNames() {
     let player1, player2;
     switch (p1Selected) {
         case true:
-            player1 = { name: p1Clean, skill: p1S };
-            player2 = { name: p2Clean, skill: p2S };
+            player1 = { name: p1Clean, skill: p1S, playerId: p1ProfileId };
+            player2 = { name: p2Clean, skill: p2S, playerId: p2ProfileId };
             break;
         case false:
-            player1 = { name: p2Clean, skill: p2S };
-            player2 = { name: p1Clean, skill: p1S };
+            player1 = { name: p2Clean, skill: p2S, playerId: p2ProfileId };
+            player2 = { name: p1Clean, skill: p1S, playerId: p1ProfileId };
             break;
     }
 
