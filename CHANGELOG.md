@@ -3,10 +3,10 @@
 All notable changes to this project will be documented in this file.
 
 ## v1.4.1 - 2026-09-03
-- Fixed: Match history now displays each rack separately when a player's run continues across multiple racks within the same inning.
-- Improved: Rack-specific ball segments preserve new rack boundaries while remaining compatible with existing match history and aggregate inning data.
-- Security: Disabled active debug logging that exposed game modes, player order, ball counts, and winner information in the browser console.
-- Tests: Added storage validation coverage for valid and oversized multi-rack inning segments.
+- Fixed: Match history now displays each rack separately when a player's run continues across multiple racks within the same inning. [820eece] - ([@meagantroot])
+- Improved: Rack-specific ball segments preserve new rack boundaries while remaining compatible with existing match history and aggregate inning data. [820eece] - ([@meagantroot])
+- Security: Disabled active debug logging that exposed game modes, player order, ball counts, and winner information in the browser console. [820eece] - ([@meagantroot])
+- Tests: Added storage validation coverage for valid and oversized multi-rack inning segments. [820eece] - ([@meagantroot])
 
 ## v1.4 - 2026-08-30
 - Added: Stored player profiles with canonical names and separate skill levels for 8-ball, 9-ball, and 10-ball. [2fc8a06] - ([@meagantroot])
@@ -144,4 +144,5 @@ All notable changes to this project will be documented in this file.
 [5d4a02f]: https://github.com/meagantroot/mltydesigns.com/pull/29/commits/5d4a02fd4f5b04affba33aa51f379629b807d6d1
 [9a9d4a2]: https://github.com/meagantroot/mltydesigns.com/pull/30/commits/9a9d4a223a7b6f83276f59b5fa3093b142dd7689
 [2fc8a06]: https://github.com/meagantroot/mltydesigns.com/pull/31/commits/2fc8a065d269aa9fcafb1e437e082af9531784d9
+[820eece]: https://github.com/meagantroot/mltydesigns.com/pull/32/commits/820eece9f231cba27dae99c73c69ee7ff0c9f27b
 [@meagantroot]: https://github.com/meagantroot
