@@ -63,7 +63,7 @@ function render() {
 
     const renderScore = (player, playerIndex) => {
         const liveScore = playerScores[playerIndex];
-        const pointsNeeded = gameState.mode === '9-ball'
+        const pointsNeeded = gameState.mode === '9-ball' && !live9BallOptions.singleRack
             ? calculatePointsNeededToWin(liveScore.total, player.target)
             : null;
         const pointsToWinLabel = pointsNeeded !== null
@@ -178,17 +178,21 @@ const ballGrid = `
 
 // console.log("Current Rack we are looking for:", gameState.currentRack);
 
-const rackBalls = gameState.innings.filter(i => {
-    // We check both players just in case player 0 is 'waiting'
-    const rackValue = i["0"].rack; 
-    const isMatch = Number(rackValue) === Number(gameState.currentRack);
-    
-    // console.log(`Checking Inning ${i.inning}: Data says Rack ${rackValue}. Match? ${isMatch}`);
-    return isMatch;
-});
+const getBallsForCurrentRack = (inning, playerId) => {
+    const playerInning = inning?.[playerId];
+    if (!playerInning) return [];
+    if (Array.isArray(playerInning.rackSegments)) {
+        return playerInning.rackSegments
+            .filter(segment => Number(segment.rack) === Number(gameState.currentRack))
+            .flatMap(segment => segment.balls || []);
+    }
+    return Number(playerInning.rack) === Number(gameState.currentRack)
+        ? playerInning.balls || []
+        : [];
+};
 
-const allBallsPlayer0 = rackBalls.flatMap(i => i["0"].balls);
-const allBallsPlayer1 = rackBalls.flatMap(i => i["1"].balls);
+const allBallsPlayer0 = gameState.innings.flatMap(inning => getBallsForCurrentRack(inning, "0"));
+const allBallsPlayer1 = gameState.innings.flatMap(inning => getBallsForCurrentRack(inning, "1"));
 
 
 // Get the SVG strings for each ball

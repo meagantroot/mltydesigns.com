@@ -89,7 +89,7 @@ function startGame() {
 
 
     // Initialize...
-    console.log(`${player1.name} goes first!`);    // Skill 1-3 = 2 timeouts, 4+ = 1 timeout
+    // console.log(`${player1.name} goes first!`);    // Skill 1-3 = 2 timeouts, 4+ = 1 timeout
     const getInitialTimeouts = (skill) => (skill <= 3 ? 2 : 1);
 
 gameState = {

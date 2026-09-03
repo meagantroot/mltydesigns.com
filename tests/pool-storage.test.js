@@ -160,7 +160,13 @@ test("accepts a valid inning that spans multiple racks", () => {
             mode: "9-ball",
             players: [player("Ada"), player("Grace")],
             inningdata: [{
-                0: { balls: [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7] },
+                0: {
+                    balls: [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7],
+                    rackSegments: [
+                        { rack: 1, balls: [1, 2, 3, 4, 5, 6, 7, 8, 9] },
+                        { rack: 2, balls: [1, 2, 3, 4, 5, 6, 7] }
+                    ]
+                },
                 1: { balls: [] }
             }]
         }]
@@ -179,6 +185,21 @@ test("rejects an excessively large multi-rack inning", () => {
     });
 
     assert.throws(() => validateImportedBackup(data), /no more than 150 balls/);
+});
+
+test("rejects a rack segment containing more than one rack of balls", () => {
+    const data = backup({
+        history: [{
+            mode: "9-ball",
+            players: [player("Ada"), player("Grace")],
+            inningdata: [{
+                0: { balls: [], rackSegments: [{ rack: 1, balls: Array(16).fill(1) }] },
+                1: { balls: [] }
+            }]
+        }]
+    });
+
+    assert.throws(() => validateImportedBackup(data), /no more than 15 balls/);
 });
 
 test("rejects prototype-pollution keys", () => {

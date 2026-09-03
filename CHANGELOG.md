@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.4.1 - 2026-09-03
+- Fixed: Match history now displays each rack separately when a player's run continues across multiple racks within the same inning.
+- Improved: Rack-specific ball segments preserve new rack boundaries while remaining compatible with existing match history and aggregate inning data.
+- Security: Disabled active debug logging that exposed game modes, player order, ball counts, and winner information in the browser console.
+- Tests: Added storage validation coverage for valid and oversized multi-rack inning segments.
+
 ## v1.4 - 2026-08-30
 - Added: Stored player profiles with canonical names and separate skill levels for 8-ball, 9-ball, and 10-ball. [2fc8a06] - ([@meagantroot])
 - Added: Existing players can be selected during match setup, with a quick-add option that opens the player profile workflow. [2fc8a06] - ([@meagantroot])

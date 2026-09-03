@@ -28,13 +28,13 @@ function handleTurn(action) {
 
 function getActiveBallCount() {
     const activeCount = gameState.table.filter(b => b.state === 'pocketed').length;
-    console.log("Active Ball Count:", activeCount);
+    // console.log("Active Ball Count:", activeCount);
     return activeCount;
 }
 
 function getPocketedBallCount() {
     const pocketedCount = gameState.table.filter(b => b.state === 'selected').length;
-    console.log("Pocketed Ball Count:", pocketedCount);
+    // console.log("Pocketed Ball Count:", pocketedCount);
     return pocketedCount;
 }
 
@@ -355,14 +355,16 @@ if (!gameState.innings[currentIdx]) {
         // We use the unique IDs as keys so the table knows exactly who is who
         [pId]: { 
             rack: currentRack,
-            balls: [], 
+            balls: [],
+            rackSegments: [{ rack: currentRack, balls: [] }],
             points: 0, 
             action: null,
             isBR: false // Useful for 'Break and Run' tracking
         },
         [oppId]: { 
             rack: currentRack,
-            balls: [], 
+            balls: [],
+            rackSegments: [{ rack: currentRack, balls: [] }],
             points: 0, 
             action: 'waiting', 
             isBR: false 
@@ -373,10 +375,27 @@ if (!gameState.innings[currentIdx]) {
 // Now you can safely update the current shooter's data
 const currentPlayerInning = gameState.innings[currentIdx][pId];
 
+// Preserve the aggregate ball list for backwards compatibility while also
+// recording which rack each ball belongs to within this inning.
+if (!Array.isArray(currentPlayerInning.rackSegments)) {
+    currentPlayerInning.rackSegments = [{
+        rack: currentPlayerInning.rack,
+        balls: Array.isArray(currentPlayerInning.balls) ? [...currentPlayerInning.balls] : []
+    }];
+}
+let currentRackSegment = currentPlayerInning.rackSegments.find(segment =>
+    Number(segment.rack) === Number(currentRack)
+);
+if (!currentRackSegment) {
+    currentRackSegment = { rack: currentRack, balls: [] };
+    currentPlayerInning.rackSegments.push(currentRackSegment);
+}
+
 // Record the results of this turn
 if (pocketed && pocketed.length > 0) {
     // currentPlayerInning.balls.push(...pocketed.map(b => b.id));
     currentPlayerInning.balls.push(...pocketed);
+    currentRackSegment.balls.push(...pocketed);
     if (gameState.mode === '9-ball') {
     currentPlayerInning.points += pocketed.length;
         if (pocketed.includes(9)) {
@@ -482,7 +501,7 @@ if (pocketed && pocketed.length > 0) {
             bsOffcanvas.show();
             launchConfetti();
             gameState.winner = winner.name;
-            console.log(gameState.winner);
+            // console.log(gameState.winner);
     }
 
 

@@ -165,6 +165,25 @@ function validateBallList(value, fieldName) {
     });
 }
 
+function validateRackSegments(value, fieldName) {
+    if (value === undefined) return;
+    if (!Array.isArray(value) || value.length > 100) {
+        throw new Error(`${fieldName} must be an array containing no more than 100 rack segments.`);
+    }
+    value.forEach((segment, index) => {
+        if (!isPlainObject(segment)) throw new Error(`${fieldName}[${index}] must be an object.`);
+        validateOptionalInteger(segment, "rack", `${fieldName}[${index}]`, 1, 1000);
+        if (!Array.isArray(segment.balls) || segment.balls.length > 15) {
+            throw new Error(`${fieldName}[${index}].balls must contain no more than 15 balls.`);
+        }
+        segment.balls.forEach((ball, ballIndex) => {
+            if (!Number.isInteger(ball) || ball < 1 || ball > 15) {
+                throw new Error(`${fieldName}[${index}].balls[${ballIndex}] must be a ball number between 1 and 15.`);
+            }
+        });
+    });
+}
+
 function validateInningData(value, fieldName) {
     if (value === undefined || value === null) return;
     if (!Array.isArray(value) && !isPlainObject(value)) {
@@ -183,6 +202,7 @@ function validateInningData(value, fieldName) {
                 throw new Error(`${fieldName}[${index}].${playerId} must be an object.`);
             }
             validateBallList(playerInning.balls, `${fieldName}[${index}].${playerId}.balls`);
+            validateRackSegments(playerInning.rackSegments, `${fieldName}[${index}].${playerId}.rackSegments`);
             validateOptionalInteger(playerInning, "points", `${fieldName}[${index}].${playerId}`);
             validateOptionalInteger(playerInning, "rack", `${fieldName}[${index}].${playerId}`, 0, 1000);
         });
@@ -990,7 +1010,7 @@ function rollDiceUI() {
 
 function setGameModeFromDice(num) {
     gameState.mode = `${num}-ball`;
-    console.log("Game mode set to:", gameState.mode);
+    // console.log("Game mode set to:", gameState.mode);
     // Call your existing render function here if needed
     if (typeof renderGame === "function") renderGame();
 }
