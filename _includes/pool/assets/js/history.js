@@ -54,20 +54,6 @@ const rows = hasInnings ? Object.values(m.inningdata)
 
         const p1Data = inn[p1Id] || { balls: [], points: 0 };
         const p2Data = inn[p2Id] || { balls: [], points: 0 };
-
-let rackRow = '';
-const currentRack = inn[p1Id]?.rack ?? inn[p2Id]?.rack;
-
-if (currentRack != null && currentRack !== lastRack) {
-    lastRack = currentRack;
-
-    rackRow = `
-    <tr class="table-info m-0 p-0">
-        <td colspan="3" class="text-center" style="padding:1px; margin:0; line-height: 1.1em; font-size: 12px;">
-            <strong>Rack ${currentRack}</strong>
-        </td>
-    </tr>`;
-}
 // console.log(inn);
 
 function getBallSVG(ball) {
@@ -106,23 +92,58 @@ function getBallSVG(ball) {
         </svg>`;
 }
 
-return `
-    ${rackRow}
-    <tr>
-        <td class="text-start">
-            <div style="display:flex; flex-wrap:wrap; gap:2px; justify-content:flex-start;">
-                ${(p1Data.balls || []).map(num => getBallSVG(num)).join('') || '-'}
-            </div>
-        </td>
+const getRackSegments = playerData => Array.isArray(playerData.rackSegments) && playerData.rackSegments.length > 0
+    ? playerData.rackSegments
+    : [{ rack: playerData.rack, balls: playerData.balls || [] }];
+const p1Segments = getRackSegments(p1Data);
+const p2Segments = getRackSegments(p2Data);
+const rackNumbers = Array.from(new Set(
+    [...p1Segments, ...p2Segments]
+        .map(segment => segment.rack)
+        .filter(rack => rack != null)
+)).sort((left, right) => Number(left) - Number(right));
 
-        <td class="text-center"><strong>${idx}</strong></td>
+if (rackNumbers.length === 0) rackNumbers.push(null);
 
-        <td class="text-end">
-            <div style="display:flex; flex-wrap:wrap; gap:2px; justify-content:flex-end;">
-                ${(p2Data.balls || []).map(num => getBallSVG(num)).join('') || '-'}
-            </div>
-        </td>
-    </tr>`;
+return rackNumbers.map(currentRack => {
+    let rackRow = '';
+    if (currentRack != null && currentRack !== lastRack) {
+        lastRack = currentRack;
+        rackRow = `
+        <tr class="table-info m-0 p-0">
+            <td colspan="3" class="text-center" style="padding:1px; margin:0; line-height: 1.1em; font-size: 12px;">
+                <strong>Rack ${currentRack}</strong>
+            </td>
+        </tr>`;
+    }
+
+    const ballsForRack = (segments, fallback) => currentRack == null
+        ? fallback
+        : segments
+            .filter(segment => Number(segment.rack) === Number(currentRack))
+            .flatMap(segment => segment.balls || []);
+    const p1Balls = ballsForRack(p1Segments, p1Data.balls || []);
+    const p2Balls = ballsForRack(p2Segments, p2Data.balls || []);
+    const inningNumber = inn.inning ?? idx;
+
+    return `
+        ${rackRow}
+        <tr>
+            <td class="text-start">
+                <div style="display:flex; flex-wrap:wrap; gap:2px; justify-content:flex-start;">
+                    ${p1Balls.map(num => getBallSVG(num)).join('') || '-'}
+                </div>
+            </td>
+
+            <td class="text-center"><strong>${inningNumber}</strong></td>
+
+            <td class="text-end">
+                <div style="display:flex; flex-wrap:wrap; gap:2px; justify-content:flex-end;">
+                    ${p2Balls.map(num => getBallSVG(num)).join('') || '-'}
+                </div>
+            </td>
+        </tr>`;
+}).join('');
     }).join('') : '';
 
         const getRate = (player, statKey, totalInnings) => {

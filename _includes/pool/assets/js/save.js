@@ -36,7 +36,7 @@ function archiveMatch() {
         }))
     });
     PoolStorage.saveHistory(history);
-    console.log(gameState.winner);
+    // console.log(gameState.winner);
 }
 
 function quitMatchEarly() {
