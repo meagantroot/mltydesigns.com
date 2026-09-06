@@ -3,11 +3,12 @@
 All notable changes to this project will be documented in this file.
 
 ## v1.4.2 - 2026-09-06
-- Security: Sanitized stored-player names with locally hosted DOMPurify and enforced the existing letters, numbers, and spaces policy before saving.
-- Security: Enforced immutable, whole-number skill ranges for 8-ball, 9-ball, and 10-ball at both the form and storage boundaries.
-- Fixed: Invalid player-profile input is rejected before it can modify the current stored dataset.
-- Improved: Skill inputs now display their allowed ranges and immediately constrain typed values to valid whole numbers.
-- Tests: Added regression coverage for oversized and out-of-range skills, valid boundary values, unsupported game modes, and player-name XSS payloads.
+- Added: A comprehensive user guide is available as a full-screen in-app modal for offline reference and as a standalone help page. [da99bdb] - ([@meagantroot])
+- Security: Sanitized stored-player names with locally hosted DOMPurify and enforced the existing letters, numbers, and spaces policy before saving. [da99bdb] - ([@meagantroot])
+- Security: Enforced immutable, whole-number skill ranges for 8-ball, 9-ball, and 10-ball at both the form and storage boundaries. [da99bdb] - ([@meagantroot])
+- Fixed: Invalid player-profile input is rejected before it can modify the current stored dataset. [da99bdb] - ([@meagantroot])
+- Improved: Skill inputs now display their allowed ranges and immediately constrain typed values to valid whole numbers. [da99bdb] - ([@meagantroot])
+- Tests: Added regression coverage for oversized and out-of-range skills, valid boundary values, unsupported game modes, and player-name XSS payloads. [da99bdb] - ([@meagantroot])
 
 ## v1.4.1 - 2026-09-03
 - Fixed: Match history now displays each rack separately when a player's run continues across multiple racks within the same inning. [820eece] - ([@meagantroot])
@@ -152,4 +153,5 @@ All notable changes to this project will be documented in this file.
 [9a9d4a2]: https://github.com/meagantroot/mltydesigns.com/pull/30/commits/9a9d4a223a7b6f83276f59b5fa3093b142dd7689
 [2fc8a06]: https://github.com/meagantroot/mltydesigns.com/pull/31/commits/2fc8a065d269aa9fcafb1e437e082af9531784d9
 [820eece]: https://github.com/meagantroot/mltydesigns.com/pull/32/commits/820eece9f231cba27dae99c73c69ee7ff0c9f27b
+[da99bdb]: https://github.com/meagantroot/mltydesigns.com/pull/33/commits/da99bdb5bb2610b8286b122991c59152f8d28cb9
 [@meagantroot]: https://github.com/meagantroot
