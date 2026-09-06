@@ -55,6 +55,17 @@ function openPlayerProfileModal(slot = null, playerId = null) {
     setTimeout(() => document.getElementById('profileEditorName').focus(), 150);
 }
 
+function constrainPlayerProfileSkill(input, mode) {
+    const range = PROFILE_SKILL_RANGES[mode];
+    if (!range || input.value === '') return;
+    const value = input.valueAsNumber;
+    if (!Number.isFinite(value)) {
+        input.value = DEFAULT_PROFILE_SKILL_LEVELS[mode];
+        return;
+    }
+    input.value = Math.min(range.maximum, Math.max(range.minimum, Math.round(value)));
+}
+
 function savePlayerProfileModal() {
     const nameInput = document.getElementById('profileEditorName');
     const skillInputs = {
@@ -62,29 +73,42 @@ function savePlayerProfileModal() {
         '9-ball': document.getElementById('profileSkill9'),
         '10-ball': document.getElementById('profileSkill10')
     };
-    const invalidSkill = Object.values(skillInputs).find(input => !input.checkValidity());
-    if (!nameInput.checkValidity()) {
+    nameInput.setCustomValidity('');
+    let name;
+    try {
+        name = sanitizePlayerProfileName(nameInput.value);
+    } catch (error) {
+        nameInput.setCustomValidity(error.message);
         nameInput.reportValidity();
         return;
     }
-    if (invalidSkill) {
-        invalidSkill.reportValidity();
+    nameInput.value = name;
+
+    const skillLevels = {};
+    for (const [mode, input] of Object.entries(skillInputs)) {
+        input.setCustomValidity('');
+        const value = input.valueAsNumber;
+        const range = PROFILE_SKILL_RANGES[mode];
+        if (!Number.isInteger(value) || value < range.minimum || value > range.maximum) {
+            input.setCustomValidity(`${mode} skill level must be a whole number from ${range.minimum} to ${range.maximum}.`);
+            input.reportValidity();
+            return;
+        }
+        skillLevels[mode] = value;
+    }
+
+    let profile;
+    try {
+        profile = PoolStorage.upsertProfile({
+            playerId: document.getElementById('profileEditorId').value || undefined,
+            name,
+            skillLevels
+        });
+    } catch (error) {
+        console.error('Player profile could not be saved:', error);
+        alert(error.message);
         return;
     }
-    const name = clean(nameInput.value);
-    if (!name) {
-        alert('Enter a valid player name before saving.');
-        return;
-    }
-    const skillLevels = Object.fromEntries(Object.entries(skillInputs).map(([mode, input]) => {
-        const displayedValue = input.valueAsNumber;
-        return [mode, Number.isInteger(displayedValue) ? displayedValue : DEFAULT_PROFILE_SKILL_LEVELS[mode]];
-    }));
-    const profile = PoolStorage.upsertProfile({
-        playerId: document.getElementById('profileEditorId').value || undefined,
-        name,
-        skillLevels
-    });
     refreshPlayerProfileUI();
     if (profileEditorTargetSlot) {
         document.getElementById(`p${profileEditorTargetSlot}Profile`).value = profile.playerId;

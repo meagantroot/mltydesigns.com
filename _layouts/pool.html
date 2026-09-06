@@ -91,6 +91,9 @@
             </svg> Settings
           </button>
         </div>
+        <div class="col-sm-4 mt-0 w-100">
+          <button class="btn btn-outline-primary w-100 p-2" type="button" data-bs-toggle="modal" data-bs-target="#userGuideModal">User Guide</button>
+        </div>
       </div>
     </div>
   </div>
@@ -119,16 +122,16 @@
           <p class="small text-muted">Set the player's skill level for each game type.</p>
           <div class="row g-2">
             <div class="col-4">
-              <label for="profileSkill8" class="form-label">8-Ball</label>
-              <input type="number" id="profileSkill8" class="form-control" min="2" max="7" value="4" required>
+              <label for="profileSkill8" class="form-label">8-Ball <small class="text-muted">(2–7)</small></label>
+              <input type="number" id="profileSkill8" class="form-control" min="2" max="7" step="1" inputmode="numeric" value="4" oninput="constrainPlayerProfileSkill(this, '8-ball')" aria-label="8-Ball skill level, 2 through 7" required>
             </div>
             <div class="col-4">
-              <label for="profileSkill9" class="form-label">9-Ball</label>
-              <input type="number" id="profileSkill9" class="form-control" min="1" max="9" value="5" required>
+              <label for="profileSkill9" class="form-label">9-Ball <small class="text-muted">(1–9)</small></label>
+              <input type="number" id="profileSkill9" class="form-control" min="1" max="9" step="1" inputmode="numeric" value="5" oninput="constrainPlayerProfileSkill(this, '9-ball')" aria-label="9-Ball skill level, 1 through 9" required>
             </div>
             <div class="col-4">
-              <label for="profileSkill10" class="form-label">10-Ball</label>
-              <input type="number" id="profileSkill10" class="form-control" min="2" max="7" value="4" required>
+              <label for="profileSkill10" class="form-label">10-Ball <small class="text-muted">(2–7)</small></label>
+              <input type="number" id="profileSkill10" class="form-control" min="2" max="7" step="1" inputmode="numeric" value="4" oninput="constrainPlayerProfileSkill(this, '10-ball')" aria-label="10-Ball skill level, 2 through 7" required>
             </div>
           </div>
         </div>
@@ -141,6 +144,27 @@
   </div>
 
   <!-- Player Stats Off Canvas -->
+
+  <!-- Offline User Guide Modal -->
+
+  <div class="modal fade" id="userGuideModal" tabindex="-1" aria-labelledby="userGuideModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-4" id="userGuideModalLabel">Pool App User Guide</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+        </div>
+        <div class="modal-body">
+          {% assign pool_help_page = site.pages | where: "permalink", "/pool/help/" | first %}
+          {% capture pool_help_content %}{{ pool_help_page.content | markdownify }}{% endcapture %}
+          {{ pool_help_content | replace: 'pool-guide-standalone-nav', 'd-none' }}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close Guide</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="menuPlayerStats"
     aria-labelledby="menuPlayerStatsLabel">
@@ -225,7 +249,8 @@
       <h2 class="offcanvas-title" id="menuSettingsLabel">Settings</h2>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">X</button>
     </div>
-    <div class="offcanvas-body">
+  <div class="offcanvas-body">
+      <button class="btn btn-outline-primary w-100 mb-3" type="button" data-bs-toggle="modal" data-bs-target="#userGuideModal">Open User Guide</button>
       <div class="card mb-3">
         <div class="card-body">
           <div class="row justify-content-between">
@@ -376,6 +401,7 @@
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">X</button>
   </div>
   <div class="offcanvas-body">
+      <button class="btn btn-outline-primary w-100 mb-3" type="button" data-bs-toggle="modal" data-bs-target="#userGuideModal">Open User Guide</button>
           <div class="col-sm-12 col-md-6 align-self-start">
           <h3 class="card-title text-right">Display Mode</h3>
           <div class="form-check form-switch ms-auto m-2">

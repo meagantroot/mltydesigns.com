@@ -21,6 +21,12 @@ const DEFAULT_PROFILE_SKILL_LEVELS = Object.freeze({
     "9-ball": 5,
     "10-ball": 4
 });
+const PROFILE_SKILL_RANGES = Object.freeze({
+    "8-ball": Object.freeze({ minimum: 2, maximum: 7 }),
+    "9-ball": Object.freeze({ minimum: 1, maximum: 9 }),
+    "10-ball": Object.freeze({ minimum: 2, maximum: 7 })
+});
+const SAFE_PROFILE_NAME = /^[A-Za-z0-9 ]{1,50}$/;
 
 function readStoredJson(key, fallback, options = {}) {
     const rawValue = localStorage.getItem(key);
@@ -63,6 +69,31 @@ function sanitizeImportedString(value) {
     const decoder = document.createElement("textarea");
     decoder.innerHTML = sanitized;
     return DOMPurify.sanitize(decoder.value, textOnlyOptions);
+}
+
+function sanitizePlayerProfileName(value) {
+    if (typeof value !== "string") throw new Error("Player name must be text.");
+    const sanitized = sanitizeImportedString(value).replace(/\s+/g, " ").trim();
+    if (!SAFE_PROFILE_NAME.test(sanitized)) {
+        throw new Error("Player name must contain only letters, numbers, and spaces and be no more than 50 characters.");
+    }
+    return sanitized;
+}
+
+function normalizePlayerProfileSkillLevels(skillLevels = {}) {
+    if (!isPlainObject(skillLevels)) throw new Error("Player skill levels must be an object.");
+    const unsupportedModes = Object.keys(skillLevels).filter(mode => !PROFILE_SKILL_RANGES[mode]);
+    if (unsupportedModes.length) throw new Error("Player profile contains an unsupported game mode.");
+
+    const normalized = {};
+    Object.entries(PROFILE_SKILL_RANGES).forEach(([mode, range]) => {
+        const skill = skillLevels[mode] ?? DEFAULT_PROFILE_SKILL_LEVELS[mode];
+        if (!Number.isInteger(skill) || skill < range.minimum || skill > range.maximum) {
+            throw new Error(`${mode} skill level must be a whole number from ${range.minimum} to ${range.maximum}.`);
+        }
+        normalized[mode] = skill;
+    });
+    return normalized;
 }
 
 function sanitizeImportedValue(value, state = { count: 0 }, depth = 0) {
@@ -138,16 +169,16 @@ function validatePlayerProfile(profile, index) {
     if (typeof profile.playerId !== "string" || !SAFE_PLAYER_ID.test(profile.playerId)) {
         throw new Error(`${fieldName} must have a valid player ID.`);
     }
-    if (typeof profile.name !== "string" || !profile.name.trim() || profile.name.length > 50) {
-        throw new Error(`${fieldName} must have a name between 1 and 50 characters.`);
+    if (typeof profile.name !== "string" || !SAFE_PROFILE_NAME.test(profile.name) || profile.name !== profile.name.trim()) {
+        throw new Error(`${fieldName} must have a name containing only letters, numbers, and spaces.`);
     }
     if (!isPlainObject(profile.skillLevels)) throw new Error(`${fieldName}.skillLevels must be an object.`);
-    ["8-ball", "9-ball", "10-ball"].forEach(mode => {
+    const unsupportedModes = Object.keys(profile.skillLevels).filter(mode => !PROFILE_SKILL_RANGES[mode]);
+    if (unsupportedModes.length) throw new Error(`${fieldName} has an unsupported skill-level game mode.`);
+    Object.entries(PROFILE_SKILL_RANGES).forEach(([mode, range]) => {
         const skill = profile.skillLevels[mode];
         if (skill === undefined || skill === null) return;
-        const minimum = mode === "9-ball" ? 1 : 2;
-        const maximum = mode === "9-ball" ? 9 : 7;
-        if (!Number.isInteger(skill) || skill < minimum || skill > maximum) {
+        if (!Number.isInteger(skill) || skill < range.minimum || skill > range.maximum) {
             throw new Error(`${fieldName} has an invalid ${mode} skill level.`);
         }
     });
@@ -659,28 +690,37 @@ const PoolStorage = {
     },
 
     upsertProfile(profile) {
-        const dataset = this.loadDataset();
-        const normalizedName = normalizePlayerName(profile.name);
+        if (!isPlainObject(profile)) throw new Error("Player profile must be an object.");
+        if (profile.playerId !== undefined && (
+            typeof profile.playerId !== "string" || !SAFE_PLAYER_ID.test(profile.playerId)
+        )) {
+            throw new Error("Player profile has an invalid player ID.");
+        }
+        const safeName = sanitizePlayerProfileName(profile.name);
+        const safeSkillLevels = normalizePlayerProfileSkillLevels(profile.skillLevels);
+        const dataset = JSON.parse(JSON.stringify(this.loadDataset()));
+        const normalizedName = normalizePlayerName(safeName);
         let existing = profile.playerId
             ? dataset.profiles.find(item => item.playerId === profile.playerId)
             : dataset.profiles.find(item => normalizePlayerName(item.name) === normalizedName);
         if (!existing) {
             existing = {
                 playerId: createMatchId(),
-                name: profile.name.trim(),
+                name: safeName,
                 skillLevels: {},
                 createdAt: new Date().toISOString()
             };
             dataset.profiles.push(existing);
         }
-        existing.name = profile.name.trim();
+        existing.name = safeName;
         existing.skillLevels = Object.assign(
             {},
             DEFAULT_PROFILE_SKILL_LEVELS,
             existing.skillLevels,
-            profile.skillLevels || {}
+            safeSkillLevels
         );
         existing.updatedAt = new Date().toISOString();
+        validatePlayerProfile(existing, dataset.profiles.indexOf(existing));
         this.writeDataset(dataset);
         return existing;
     },
@@ -932,6 +972,7 @@ if (typeof module !== "undefined" && module.exports) {
         readStoredJson,
         readStoredArray,
         sanitizeImportedValue,
+        sanitizePlayerProfileName,
         validateImportedBackup,
         validateActiveMatch,
         upgradeBackupToCurrent,
@@ -939,6 +980,7 @@ if (typeof module !== "undefined" && module.exports) {
         mergeMatchHistories,
         mergePlayerProfiles,
         normalizePlayerName,
+        PROFILE_SKILL_RANGES,
         PoolStorage,
         POOL_DATASET_KEY,
         POOL_DATASET_PREVIOUS_KEY,
