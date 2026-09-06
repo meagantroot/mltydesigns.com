@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.4.2 - 2026-09-06
+- Security: Sanitized stored-player names with locally hosted DOMPurify and enforced the existing letters, numbers, and spaces policy before saving.
+- Security: Enforced immutable, whole-number skill ranges for 8-ball, 9-ball, and 10-ball at both the form and storage boundaries.
+- Fixed: Invalid player-profile input is rejected before it can modify the current stored dataset.
+- Improved: Skill inputs now display their allowed ranges and immediately constrain typed values to valid whole numbers.
+- Tests: Added regression coverage for oversized and out-of-range skills, valid boundary values, unsupported game modes, and player-name XSS payloads.
+
 ## v1.4.1 - 2026-09-03
 - Fixed: Match history now displays each rack separately when a player's run continues across multiple racks within the same inning. [820eece] - ([@meagantroot])
 - Improved: Rack-specific ball segments preserve new rack boundaries while remaining compatible with existing match history and aggregate inning data. [820eece] - ([@meagantroot])

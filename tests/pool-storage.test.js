@@ -513,6 +513,77 @@ test("stores default skill levels for every mode when an upsert omits unchanged 
     });
 });
 
+test("rejects out-of-range profile skill levels without changing stored data", () => {
+    global.localStorage = new StorageMock();
+    const original = global.localStorage.getItem(POOL_DATASET_KEY);
+
+    assert.throws(
+        () => PoolStorage.upsertProfile({
+            name: "Ada",
+            skillLevels: { "8-ball": 9999999999999999999999999 }
+        }),
+        /8-ball skill level must be a whole number from 2 to 7/
+    );
+    assert.equal(global.localStorage.getItem(POOL_DATASET_KEY), original);
+});
+
+test("enforces the skill range for every stored-player game mode", () => {
+    global.localStorage = new StorageMock();
+
+    assert.throws(
+        () => PoolStorage.upsertProfile({ name: "Ada", skillLevels: { "8-ball": 1 } }),
+        /8-ball skill level must be a whole number from 2 to 7/
+    );
+    assert.throws(
+        () => PoolStorage.upsertProfile({ name: "Ada", skillLevels: { "9-ball": 10 } }),
+        /9-ball skill level must be a whole number from 1 to 9/
+    );
+    assert.throws(
+        () => PoolStorage.upsertProfile({ name: "Ada", skillLevels: { "10-ball": 8 } }),
+        /10-ball skill level must be a whole number from 2 to 7/
+    );
+    assert.throws(
+        () => PoolStorage.upsertProfile({ name: "Ada", skillLevels: { snooker: 3 } }),
+        /unsupported game mode/
+    );
+    assert.deepEqual(PoolStorage.loadProfiles(), []);
+});
+
+test("accepts the lower and upper profile skill boundaries", () => {
+    global.localStorage = new StorageMock();
+
+    PoolStorage.upsertProfile({
+        name: "Ada 2",
+        skillLevels: { "8-ball": 2, "9-ball": 1, "10-ball": 7 }
+    });
+    PoolStorage.upsertProfile({
+        name: "Grace 9",
+        skillLevels: { "8-ball": 7, "9-ball": 9, "10-ball": 2 }
+    });
+
+    assert.equal(PoolStorage.loadProfiles().length, 2);
+});
+
+test("sanitizes profile names and rejects XSS payloads before storage", () => {
+    global.localStorage = new StorageMock();
+    const original = global.localStorage.getItem(POOL_DATASET_KEY);
+
+    assert.throws(
+        () => PoolStorage.upsertProfile({
+            name: '<img src=x onerror="alert(1)">',
+            skillLevels: { "8-ball": 4, "9-ball": 5, "10-ball": 4 }
+        }),
+        /Player name must contain only letters, numbers, and spaces/
+    );
+    assert.equal(global.localStorage.getItem(POOL_DATASET_KEY), original);
+
+    const profile = PoolStorage.upsertProfile({
+        name: "  Ada   Lovelace  ",
+        skillLevels: { "8-ball": 4, "9-ball": 5, "10-ball": 4 }
+    });
+    assert.equal(profile.name, "Ada Lovelace");
+});
+
 test("creates profiles from exact historical names and attributes matches", () => {
     global.localStorage = new StorageMock();
     PoolStorage.writeDataset(backup({
