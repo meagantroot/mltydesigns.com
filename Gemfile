@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Match the dependency set supported by GitHub Pages.
-gem "github-pages", "~> 232", group: :jekyll_plugins
+gem "github-pages", "~> 233", group: :jekyll_plugins
 gem "minima", "~> 2.5"
 
 group :jekyll_plugins do
